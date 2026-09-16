@@ -58,7 +58,7 @@ function Index() {
 
       <section id="top" className="relative min-h-[92svh] border-b border-foreground/10 pt-20">
         <div className="absolute inset-y-0 right-0 hidden w-[45%] bg-sage md:block" aria-hidden="true" />
-        <div className="relative mx-auto grid min-h-[calc(92svh-5rem)] max-w-7xl items-center gap-10 px-5 py-14 md:grid-cols-[1.05fr_.95fr] md:px-10">
+        <div className="relative mx-auto grid min-h-[calc(92svh-5rem)] max-w-7xl items-center gap-8 px-5 py-10 md:grid-cols-[1.05fr_.95fr] md:gap-10 md:px-10 md:py-14">
           <div className="relative z-10 max-w-2xl">
             <p className="mb-6 flex items-center gap-2 text-xs font-bold uppercase tracking-[0.18em] text-primary">
               <Sparkles className="size-3.5" /> Built with girls, not for them
@@ -77,14 +77,14 @@ function Index() {
                 See what we’re building <ArrowDown className="size-4" />
               </a>
             </div>
-            <p className="mt-5 max-w-md text-sm leading-6 text-muted-foreground">
+            <p className="mt-5 hidden max-w-md text-sm leading-6 text-muted-foreground sm:block">
               We’re starting small: 20–30 genuinely interested girls who want to help shape what comes next.
             </p>
           </div>
 
           <div className="relative mx-auto w-full max-w-xl md:ml-8">
             <div className="rotate-[-1.5deg] border border-foreground/15 bg-card p-3 shadow-editorial">
-              <img src={communityImage} width={1600} height={1104} alt="Four young women sharing a relaxed conversation on a university lawn" className="aspect-[4/3] w-full object-cover" />
+              <img src={communityImage} width={1600} height={1104} alt="Four young women sharing a relaxed conversation on a university lawn" className="h-52 w-full object-cover sm:h-auto sm:aspect-[4/3]" />
               <div className="flex items-center justify-between px-2 pb-1 pt-3 text-xs text-muted-foreground">
                 <span>Real conversations, small circles.</span><span>01 / 04</span>
               </div>
@@ -176,7 +176,7 @@ function Index() {
         </div>
       </section>
 
-      <section className="relative overflow-hidden bg-clay px-5 py-24 text-clay-foreground md:px-10 md:py-32">
+      <section id="founding" className="relative overflow-hidden bg-clay px-5 py-24 text-clay-foreground md:px-10 md:py-32">
         <div className="absolute -right-20 -top-20 size-72 rounded-full border border-clay-foreground/15" aria-hidden="true" />
         <div className="absolute -right-4 top-12 size-44 rounded-full border border-clay-foreground/15" aria-hidden="true" />
         <div className="relative mx-auto grid max-w-6xl gap-12 md:grid-cols-[1.25fr_.75fr] md:items-end">
