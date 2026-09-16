@@ -1,8 +1,10 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { ArrowDown, ArrowRight, Compass, Heart, MessageCircle, Sparkles } from "lucide-react";
+import { ArrowRight, ArrowUpRight, Compass, MessageCircle, Sparkles } from "lucide-react";
 
-import communityImage from "@/assets/truenorth-community.jpg";
+import compassPoster from "@/assets/truenorth-compass-poster.jpg.asset.json";
+import compassVideo from "@/assets/truenorth-compass.mp4.asset.json";
 import { Button } from "@/components/ui/button";
+import { trueNorthLinks } from "@/lib/truenorth-links";
 
 export const Route = createFileRoute("/")({
   component: Index,
@@ -26,8 +28,6 @@ export const Route = createFileRoute("/")({
   }),
 });
 
-const interestFormUrl = "https://forms.google.com";
-
 const activities = [
   ["01", "Girl Circles", "Five to ten girls, one honest topic, one unhurried hour."],
   ["02", "Weekly questions", "A thoughtful prompt to answer in your own time, without performing."],
@@ -38,60 +38,60 @@ const activities = [
 function Index() {
   return (
     <main className="overflow-hidden bg-background text-foreground">
-      <header className="absolute inset-x-0 top-0 z-20 border-b border-foreground/10">
+      <header className="absolute inset-x-0 top-0 z-20 border-b border-foreground/15">
         <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-5 md:px-10">
-          <a href="#top" className="flex items-center gap-3" aria-label="TrueNorth home">
+          <a href="#top" className="hero-reveal hero-reveal-brand flex items-center gap-3" aria-label="TrueNorth home">
             <span className="grid size-9 place-items-center rounded-full border border-foreground/20">
               <Compass className="size-5 text-primary" aria-hidden="true" />
             </span>
             <span className="font-display text-xl font-semibold">TrueNorth</span>
           </a>
-          <nav className="hidden items-center gap-8 text-sm md:flex" aria-label="Main navigation">
+          <nav className="hero-reveal hero-reveal-actions hidden items-center gap-8 text-sm md:flex" aria-label="Main navigation">
             <a className="transition-colors hover:text-primary" href="#inside">Inside the community</a>
             <a className="transition-colors hover:text-primary" href="#how">How it grows</a>
           </nav>
-          <Button asChild size="default">
-            <a href={interestFormUrl} target="_blank" rel="noreferrer">Join the circle <ArrowRight className="size-4" /></a>
-          </Button>
+          <div className="hero-reveal hero-reveal-actions">
+            <Button asChild size="default">
+              <a href={trueNorthLinks.foundingCircle} target="_blank" rel="noreferrer">Join the circle <ArrowRight className="size-4" /></a>
+            </Button>
+          </div>
         </div>
       </header>
 
-      <section id="top" className="relative min-h-[92svh] border-b border-foreground/10 pt-20">
-        <div className="absolute inset-y-0 right-0 hidden w-[45%] bg-sage md:block" aria-hidden="true" />
-        <div className="relative mx-auto grid min-h-[calc(92svh-5rem)] max-w-7xl items-center gap-8 px-5 py-10 md:grid-cols-[1.05fr_.95fr] md:gap-10 md:px-10 md:py-14">
-          <div className="relative z-10 max-w-2xl">
-            <p className="mb-6 flex items-center gap-2 text-xs font-bold uppercase tracking-[0.18em] text-primary">
-              <Sparkles className="size-3.5" /> Built with girls, not for them
+      <section id="top" className="relative isolate flex min-h-[100svh] items-end overflow-hidden border-b border-foreground/10 pt-20">
+        <video
+          className="hero-video absolute inset-0 -z-20 size-full object-cover"
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="metadata"
+          poster={compassPoster.url}
+          aria-hidden="true"
+          tabIndex={-1}
+        >
+          <source src={compassVideo.url} type="video/mp4" />
+        </video>
+        <div className="hero-video-overlay absolute inset-0 -z-10" aria-hidden="true" />
+
+        <div className="mx-auto flex w-full max-w-7xl items-end px-5 pb-14 pt-28 sm:pb-16 md:px-10 md:pb-20 lg:pb-24">
+          <div className="max-w-2xl">
+            <p className="hero-reveal hero-reveal-brand mb-4 font-display text-xl font-medium sm:text-2xl">
+              TrueNorth
             </p>
-            <h1 className="font-display text-6xl leading-[.94] font-medium sm:text-7xl lg:text-8xl">
+            <h1 className="hero-reveal hero-reveal-headline font-display text-5xl leading-[.96] font-medium sm:text-7xl lg:text-8xl">
               A calmer way<br />to <em className="text-primary">live.</em>
             </h1>
-            <p className="mt-7 max-w-xl text-lg leading-8 text-muted-foreground">
-              A community where young women can speak openly, reflect honestly, and build the things they actually need — together.
+            <p className="hero-reveal hero-reveal-copy mt-6 max-w-xl text-base leading-7 text-foreground/80 sm:text-lg sm:leading-8">
+              A smaller corner of the internet for women figuring life out — together.
             </p>
-            <div className="mt-8 flex flex-wrap items-center gap-4">
+            <div className="hero-reveal hero-reveal-actions mt-7 flex flex-col items-start gap-3 sm:flex-row sm:items-center">
               <Button asChild size="lg">
-                <a href={interestFormUrl} target="_blank" rel="noreferrer">Join the Founding Circle <ArrowRight className="size-4" /></a>
+                <a href={trueNorthLinks.foundingCircle} target="_blank" rel="noreferrer">Join the Founding Circle <ArrowRight className="size-4" /></a>
               </Button>
-              <a href="#inside" className="inline-flex min-h-12 items-center gap-2 px-2 text-sm font-semibold text-foreground hover:text-primary">
-                See what we’re building <ArrowDown className="size-4" />
-              </a>
-            </div>
-            <p className="mt-5 hidden max-w-md text-sm leading-6 text-muted-foreground sm:block">
-              We’re starting small: 20–30 genuinely interested girls who want to help shape what comes next.
-            </p>
-          </div>
-
-          <div className="relative mx-auto w-full max-w-xl md:ml-8">
-            <div className="rotate-[-1.5deg] border border-foreground/15 bg-card p-3 shadow-editorial">
-              <img src={communityImage} width={1600} height={1104} alt="Four young women sharing a relaxed conversation on a university lawn" className="h-52 w-full object-cover sm:h-auto sm:aspect-[4/3]" />
-              <div className="flex items-center justify-between px-2 pb-1 pt-3 text-xs text-muted-foreground">
-                <span>Real conversations, small circles.</span><span>01 / 04</span>
-              </div>
-            </div>
-            <div className="absolute -bottom-7 -left-4 max-w-56 rotate-2 bg-clay p-5 text-sm leading-6 text-clay-foreground shadow-editorial md:-left-12">
-              <Heart className="mb-3 size-4" />
-              No follower counts. No pressure to have it figured out.
+              <Button asChild size="lg" variant="ghost" className="px-3 text-foreground hover:bg-background/55">
+                <a href={trueNorthLinks.substack} target="_blank" rel="noreferrer">Read the Substack <ArrowUpRight className="size-4" /></a>
+              </Button>
             </div>
           </div>
         </div>
@@ -181,14 +181,14 @@ function Index() {
         <div className="absolute -right-4 top-12 size-44 rounded-full border border-clay-foreground/15" aria-hidden="true" />
         <div className="relative mx-auto grid max-w-6xl gap-12 md:grid-cols-[1.25fr_.75fr] md:items-end">
           <div><p className="text-xs font-bold uppercase tracking-[0.18em]">The first 20–30</p><h2 className="mt-5 max-w-3xl font-display text-5xl leading-tight sm:text-7xl">Come help shape the circle.</h2><p className="mt-7 max-w-2xl text-lg leading-8 opacity-80">The Founding Circle won’t just join TrueNorth. You’ll suggest conversations, test ideas, share honest feedback and help decide what this community becomes.</p></div>
-          <div className="md:text-right"><Button asChild size="lg" className="bg-ink text-ink-foreground hover:bg-ink/90"><a href={interestFormUrl} target="_blank" rel="noreferrer">I’m interested <ArrowRight className="size-4" /></a></Button><p className="mt-4 text-sm opacity-70">No polished answers required.</p></div>
+          <div className="md:text-right"><Button asChild size="lg" className="bg-ink text-ink-foreground hover:bg-ink/90"><a href={trueNorthLinks.foundingCircle} target="_blank" rel="noreferrer">I’m interested <ArrowRight className="size-4" /></a></Button><p className="mt-4 text-sm opacity-70">No polished answers required.</p></div>
         </div>
       </section>
 
       <footer className="bg-ink px-5 py-10 text-ink-foreground md:px-10">
         <div className="mx-auto flex max-w-7xl flex-col justify-between gap-8 md:flex-row md:items-end">
           <div><div className="flex items-center gap-3"><Compass className="size-6 text-sage-light" /><span className="font-display text-2xl">TrueNorth</span></div><p className="mt-3 text-sm text-ink-muted">A calmer way to live, together.</p></div>
-          <div className="flex flex-wrap gap-6 text-sm text-ink-muted"><a href="#inside" className="hover:text-ink-foreground">Community</a><a href="#how" className="hover:text-ink-foreground">How it works</a><a href={interestFormUrl} target="_blank" rel="noreferrer" className="hover:text-ink-foreground">Join the circle</a></div>
+          <div className="flex flex-wrap gap-6 text-sm text-ink-muted"><a href="#inside" className="hover:text-ink-foreground">Community</a><a href="#how" className="hover:text-ink-foreground">How it works</a><a href={trueNorthLinks.foundingCircle} target="_blank" rel="noreferrer" className="hover:text-ink-foreground">Join the circle</a></div>
         </div>
       </footer>
     </main>
