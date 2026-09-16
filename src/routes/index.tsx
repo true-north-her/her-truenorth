@@ -3,6 +3,7 @@ import { ArrowRight, ArrowUpRight, Compass, MessageCircle, Sparkles } from "luci
 
 import compassPoster from "@/assets/truenorth-compass-poster.jpg.asset.json";
 import compassVideo from "@/assets/truenorth-compass.mp4.asset.json";
+import compassVideoWebm from "@/assets/truenorth-compass.webm.asset.json";
 import { Button } from "@/components/ui/button";
 import { trueNorthLinks } from "@/lib/truenorth-links";
 
@@ -70,6 +71,7 @@ function Index() {
           aria-hidden="true"
           tabIndex={-1}
         >
+          <source src={compassVideoWebm.url} type="video/webm" />
           <source src={compassVideo.url} type="video/mp4" />
         </video>
         <div className="hero-video-overlay absolute inset-0 -z-10" aria-hidden="true" />
