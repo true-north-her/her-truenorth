@@ -12,17 +12,23 @@ const buttonVariants = cva(
         default: "bg-primary text-primary-foreground hover:bg-primary/90",
         outline:
           "border border-border bg-transparent text-foreground hover:bg-secondary",
+        ghost: "bg-transparent text-foreground hover:bg-secondary",
+        link: "bg-transparent text-primary underline-offset-4 hover:underline",
+        destructive: "bg-destructive text-destructive-foreground hover:bg-destructive/90",
+        secondary: "bg-secondary text-secondary-foreground hover:bg-secondary/80",
       },
       size: {
         default: "h-11",
+        sm: "h-9 px-3",
         lg: "h-12 px-6",
+        icon: "size-10 px-0",
       },
     },
     defaultVariants: { variant: "default", size: "default" },
   },
 );
 
-type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> &
+export type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> &
   VariantProps<typeof buttonVariants> & { asChild?: boolean };
 
 function Button({ className, variant, size, asChild, ...props }: ButtonProps) {
