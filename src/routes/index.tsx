@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { ArrowRight, ArrowUpRight, Compass, MessageCircle, Sparkles } from "lucide-react";
+import { useEffect } from "react";
+import { ArrowDown, ArrowRight, ArrowUpRight, Compass } from "lucide-react";
 
 import compassPoster from "@/assets/truenorth-compass-poster.jpg.asset.json";
 import compassVideo from "@/assets/truenorth-compass.mp4.asset.json";
@@ -29,14 +30,42 @@ export const Route = createFileRoute("/")({
   }),
 });
 
-const activities = [
-  ["01", "Girl Circles", "Five to ten girls, one honest topic, one unhurried hour."],
-  ["02", "Weekly questions", "A thoughtful prompt to answer in your own time, without performing."],
-  ["03", "Skill Swaps", "Girls teaching girls — from resumes and interviews to Canva and code."],
-  ["04", "The Girl I Needed", "The things we wish someone had told us, passed from one girl to another."],
+const experiences = [
+  { number: "01", title: "Girl Circles", lines: ["Five to ten girls.", "One honest topic.", "One unhurried hour."], className: "experience-primary" },
+  { number: "02", title: "Weekly Questions", lines: ["A thoughtful question.", "No perfect answer required."], className: "experience-weekly" },
+  { number: "03", title: "Skill Swaps", lines: ["Girls teaching girls.", "From resumes and interviews to Canva and code."], className: "experience-skills" },
+  { number: "04", title: "The Girl I Needed", lines: ["The things we wish someone had told us,", "passed from one girl to another."], className: "experience-needed" },
+];
+
+const loopStages = [
+  ["01", "Community", "Girls gather in small, honest spaces."],
+  ["02", "Insight", "Shared needs become clearer through conversation."],
+  ["03", "Build", "Useful ideas are shaped together, not assumed."],
+  ["04", "Test", "Small experiments meet real life before they grow."],
+  ["05", "Listen", "What we learn returns to the community."],
 ];
 
 function Index() {
+  useEffect(() => {
+    const elements = document.querySelectorAll<HTMLElement>("[data-story-reveal]");
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      elements.forEach((element) => element.dataset["visible"] = "true");
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      (entries) => entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        (entry.target as HTMLElement).dataset["visible"] = "true";
+        observer.unobserve(entry.target);
+      }),
+      { threshold: 0.16 },
+    );
+
+    elements.forEach((element) => observer.observe(element));
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <main className="overflow-hidden bg-background text-foreground">
       <header className="absolute inset-x-0 top-0 z-20 border-b border-foreground/15">
@@ -99,91 +128,95 @@ function Index() {
         </div>
       </section>
 
-      <div className="ticker border-b border-foreground/10 bg-paper py-4" aria-hidden="true">
-        <div className="ticker-track font-display text-lg italic text-primary">
-          listen first <span>✦</span> reflect honestly <span>✦</span> build together <span>✦</span> grow calmly <span>✦</span> listen first <span>✦</span> reflect honestly <span>✦</span> build together <span>✦</span> grow calmly <span>✦</span>
-        </div>
-      </div>
-
-      <section className="px-5 py-24 md:px-10 md:py-32">
-        <div className="mx-auto grid max-w-6xl gap-12 md:grid-cols-[.7fr_1.3fr]">
-          <p className="text-xs font-bold uppercase tracking-[0.18em] text-sage-foreground">The shift</p>
-          <div>
-            <h2 className="max-w-4xl font-display text-4xl leading-tight sm:text-6xl">Less performing your life.<br /><em className="text-primary">More understanding it.</em></h2>
-            <p className="mt-7 max-w-2xl text-lg leading-8 text-muted-foreground">The internet gives us endless places to be seen. TrueNorth is a quieter place to be known — by other girls, and by yourself.</p>
-            <div className="mt-14 grid gap-px bg-border sm:grid-cols-2">
-              <div className="bg-background p-7 sm:p-9"><p className="mb-5 text-xs font-bold uppercase tracking-[0.14em] text-muted-foreground">The usual noise</p><p className="font-display text-2xl leading-snug">“Am I doing enough? Does everyone else have this figured out?”</p></div>
-              <div className="bg-sage p-7 sm:p-9"><p className="mb-5 text-xs font-bold uppercase tracking-[0.14em] text-sage-foreground">With TrueNorth</p><p className="font-display text-2xl leading-snug">“What do I actually need — and who can I figure it out with?”</p></div>
+      <section className="story-shift border-b border-foreground/10 px-5 py-32 md:px-10 md:py-48 lg:py-56">
+        <div className="mx-auto max-w-6xl">
+          <div className="story-reveal grid gap-12 md:grid-cols-[.34fr_1fr]" data-story-reveal>
+            <div className="flex items-start gap-4">
+              <span className="font-display text-lg text-primary">01</span>
+              <span className="mt-2 h-px w-10 bg-primary/45" aria-hidden="true" />
+              <p className="text-xs font-bold uppercase tracking-[0.18em] text-sage-foreground">The shift</p>
+            </div>
+            <div>
+              <h2 className="max-w-4xl font-display text-5xl leading-[1.03] sm:text-7xl lg:text-8xl">
+                Less performing<br />your life.
+                <em className="mt-2 block text-primary">More understanding it.</em>
+              </h2>
+              <div className="mt-16 grid gap-8 border-t border-foreground/15 pt-8 md:grid-cols-[1fr_.5fr] md:gap-16">
+                <p className="max-w-2xl font-display text-2xl leading-snug sm:text-3xl">The internet gives us endless places to be seen. TrueNorth is a quieter place to be known.</p>
+                <p className="max-w-sm leading-7 text-muted-foreground">By other girls, and by yourself. A place where reflection comes before reaction, and depth matters more than frequency.</p>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
-      <section id="inside" className="bg-ink px-5 py-24 text-ink-foreground md:px-10 md:py-32">
+      <section id="inside" className="story-community bg-paper px-5 py-28 md:px-10 md:py-44">
         <div className="mx-auto max-w-6xl">
-          <p className="text-xs font-bold uppercase tracking-[0.18em] text-sage-light">Inside the community</p>
-          <div className="mt-5 flex flex-col justify-between gap-6 md:flex-row md:items-end">
-            <h2 className="max-w-3xl font-display text-5xl leading-tight sm:text-6xl">A few things we hold close.</h2>
-            <p className="max-w-sm leading-7 text-ink-muted">Not content pillars for a feed. Starting points for better conversations and useful things we can make together.</p>
-          </div>
-          <div className="mt-16 grid gap-px border-y border-ink-border bg-ink-border md:grid-cols-3">
-            {[
-              ["01", "Reflection & wellness", "Sleep, stress, confidence, body image, dating and everything between — through lived experience, never prescriptions."],
-              ["02", "Girls talking to girls", "Small, informal conversations about college, friendships, independence, career anxiety and the things we rarely say out loud."],
-              ["03", "Mentorship, made human", "Real women sharing real experience — not from a stage, but through direct, generous conversations."],
-            ].map(([number, title, copy]) => (
-              <article key={number} className="min-h-80 bg-ink p-7 md:p-9">
-                <span className="font-display text-lg text-sage-light">{number}</span>
-                <h3 className="mt-20 font-display text-3xl">{title}</h3>
-                <p className="mt-4 leading-7 text-ink-muted">{copy}</p>
+          <header className="story-reveal grid gap-10 md:grid-cols-[.55fr_1fr] md:items-end" data-story-reveal>
+            <div>
+              <div className="mb-8 flex items-center gap-4"><span className="font-display text-lg text-primary">02</span><span className="h-px w-10 bg-primary/45" aria-hidden="true" /><p className="text-xs font-bold uppercase tracking-[0.18em] text-primary">Inside the community</p></div>
+              <Compass className="size-8 text-primary/55" strokeWidth={1.2} aria-hidden="true" />
+            </div>
+            <div>
+              <h2 className="font-display text-5xl leading-[1.04] sm:text-7xl">What happens when<br /><em className="text-primary">we slow down?</em></h2>
+              <p className="mt-7 max-w-2xl text-lg leading-8 text-muted-foreground">TrueNorth isn’t about adding another place to perform. It’s about creating space for honest conversations, reflection, and connection.</p>
+            </div>
+          </header>
+
+          <div className="experience-layout mt-24 md:mt-36">
+            {experiences.map((experience) => (
+              <article key={experience.number} className={`story-reveal experience-moment group ${experience.className}`} data-story-reveal tabIndex={0}>
+                <div className="experience-rule" aria-hidden="true"><span /></div>
+                <div className="flex items-center gap-3 text-primary"><Compass className="size-4" strokeWidth={1.25} aria-hidden="true" /><span className="font-display text-lg">{experience.number}</span></div>
+                <h3 className="mt-8 font-display text-4xl leading-none sm:text-5xl">{experience.title}</h3>
+                <p className="mt-5 font-display text-xl leading-snug text-muted-foreground sm:text-2xl">{experience.lines.map((line) => <span key={line} className="block">{line}</span>)}</p>
+                <span className="experience-detail mt-7 block text-xs font-bold uppercase tracking-[0.15em] text-primary">A moment to arrive as you are</span>
               </article>
             ))}
           </div>
         </div>
       </section>
 
-      <section className="px-5 py-24 md:px-10 md:py-32">
+      <div className="story-transition border-y border-foreground/10 bg-background px-5 py-24 md:px-10 md:py-32">
+        <div className="story-reveal mx-auto flex max-w-3xl flex-col items-center text-center" data-story-reveal>
+          <div className="direction-line" aria-hidden="true"><Compass className="size-6 bg-background text-primary" strokeWidth={1.2} /></div>
+          <p className="mt-10 font-display text-3xl leading-snug sm:text-4xl">We listen to what happens here.<br /><em className="text-primary">Then we decide what deserves to be built.</em></p>
+          <ArrowDown className="mt-10 size-5 text-primary/60" strokeWidth={1.25} aria-hidden="true" />
+        </div>
+      </div>
+
+      <section id="how" className="bg-ink px-5 py-28 text-ink-foreground md:px-10 md:py-44">
         <div className="mx-auto max-w-6xl">
-          <div className="grid gap-8 md:grid-cols-2 md:items-end">
-            <div><p className="text-xs font-bold uppercase tracking-[0.18em] text-primary">What happens here</p><h2 className="mt-5 font-display text-5xl leading-tight sm:text-6xl">Small ideas.<br />Real participation.</h2></div>
-            <p className="max-w-lg text-lg leading-8 text-muted-foreground md:justify-self-end">We’re not launching everything at once. We’re beginning with simple rituals that make room for honesty, usefulness and a little joy.</p>
-          </div>
-          <div className="mt-16 divide-y divide-border border-y border-border">
-            {activities.map(([number, title, copy]) => (
-              <article key={number} className="group grid gap-4 py-7 md:grid-cols-[80px_1fr_1.2fr] md:items-center">
-                <span className="font-display text-primary">{number}</span>
-                <h3 className="font-display text-3xl transition-transform group-hover:translate-x-1">{title}</h3>
-                <p className="leading-7 text-muted-foreground">{copy}</p>
-              </article>
-            ))}
+          <header className="story-reveal grid gap-10 md:grid-cols-[.55fr_1fr] md:items-end" data-story-reveal>
+            <div className="flex items-center gap-4"><span className="font-display text-lg text-sage-light">03</span><span className="h-px w-10 bg-sage-light/45" aria-hidden="true" /><p className="text-xs font-bold uppercase tracking-[0.18em] text-sage-light">How TrueNorth grows</p></div>
+            <div><h2 className="font-display text-5xl leading-[1.04] sm:text-7xl">We don’t build first<br /><em className="text-sage-light">and listen later.</em></h2><p className="mt-7 max-w-2xl text-lg leading-8 text-ink-muted">The community comes first. Useful things emerge from needs we hear more than once — then return to the community to be shaped again.</p></div>
+          </header>
+
+          <div className="story-reveal mt-24 md:mt-36" data-story-reveal>
+            <div className="loop-layout" aria-label="The TrueNorth community-led building loop">
+              <div className="loop-center"><Compass className="mx-auto size-7 text-sage-light" strokeWidth={1.1} aria-hidden="true" /><p className="mt-4 font-display text-2xl leading-tight">Built with you,<br /><em>not for you.</em></p></div>
+              {loopStages.map(([number, title, copy], index) => (
+                <article key={title} className={`loop-stage loop-stage-${index + 1}`} tabIndex={0}>
+                  <span className="text-xs text-sage-light/70">{number}</span>
+                  <h3 className="mt-2 font-display text-3xl">{title}</h3>
+                  <p className="loop-detail mt-3 max-w-48 text-sm leading-6 text-ink-muted">{copy}</p>
+                </article>
+              ))}
+              <div className="loop-orbit" aria-hidden="true" />
+            </div>
+            <p className="mt-14 text-center text-sm text-ink-muted">Listen, learn, make something small, and listen again.</p>
           </div>
         </div>
       </section>
 
-      <section id="how" className="border-y border-foreground/10 bg-paper px-5 py-24 md:px-10 md:py-32">
-        <div className="mx-auto max-w-6xl text-center">
-          <p className="text-xs font-bold uppercase tracking-[0.18em] text-primary">How TrueNorth grows</p>
-          <h2 className="mx-auto mt-5 max-w-3xl font-display text-5xl leading-tight sm:text-6xl">We don’t build first<br />and listen later.</h2>
-          <p className="mx-auto mt-6 max-w-2xl text-lg leading-8 text-muted-foreground">The community comes first. Every useful tool begins with a real, repeated need — not a trend, assumption, or sales target.</p>
-          <div className="mt-16 grid gap-5 text-left md:grid-cols-3">
-            {[
-              [MessageCircle, "Community", "Girls gather in small, honest spaces and talk about what’s actually going on."],
-              [Sparkles, "Insight", "We listen for shared problems through conversation, reflection and anonymous questions."],
-              [Compass, "Product", "Only validated needs become tools — shaped and tested with the people they’re for."],
-            ].map(([Icon, title, copy], index) => {
-              const ItemIcon = Icon as typeof Compass;
-              return <article key={title as string} className="border-t-2 border-primary bg-background p-7"><div className="flex items-center justify-between"><ItemIcon className="size-6 text-primary" /><span className="text-xs text-muted-foreground">0{index + 1}</span></div><h3 className="mt-12 font-display text-3xl">{title as string}</h3><p className="mt-4 leading-7 text-muted-foreground">{copy as string}</p></article>;
-            })}
+      <section id="founding" className="relative overflow-hidden bg-clay px-5 py-28 text-clay-foreground md:px-10 md:py-40">
+        <div className="founding-compass absolute -right-24 -top-24 size-80 rounded-full border border-clay-foreground/15" aria-hidden="true"><span /><span /></div>
+        <div className="story-reveal relative mx-auto max-w-6xl" data-story-reveal>
+          <div className="mb-16 flex items-center gap-4"><span className="font-display text-lg">04</span><span className="h-px w-10 bg-clay-foreground/40" aria-hidden="true" /><p className="text-xs font-bold uppercase tracking-[0.18em]">The Founding Circle</p></div>
+          <div className="grid gap-14 md:grid-cols-[1.15fr_.85fr] md:items-end">
+            <div><h2 className="max-w-3xl font-display text-5xl leading-[1.04] sm:text-7xl">We’re starting small<br /><em>on purpose.</em></h2><p className="mt-7 max-w-2xl text-lg leading-8 opacity-80">The first 20–30 members aren’t simply an audience. They’ll help shape the conversations, experiments, priorities, and what gets built next.</p></div>
+            <div className="border-t border-clay-foreground/30 pt-8 md:justify-self-end"><p className="mb-7 max-w-sm font-display text-2xl leading-snug">Come as you are. Bring your questions, your experience, and your honest point of view.</p><Button asChild size="lg" className="bg-ink text-ink-foreground hover:bg-ink/90"><a href={trueNorthLinks.foundingCircle} target="_blank" rel="noreferrer">Become part of the Founding Circle <ArrowRight className="size-4" /></a></Button><p className="mt-4 text-sm opacity-70">No polished answers required.</p></div>
           </div>
-        </div>
-      </section>
-
-      <section id="founding" className="relative overflow-hidden bg-clay px-5 py-24 text-clay-foreground md:px-10 md:py-32">
-        <div className="absolute -right-20 -top-20 size-72 rounded-full border border-clay-foreground/15" aria-hidden="true" />
-        <div className="absolute -right-4 top-12 size-44 rounded-full border border-clay-foreground/15" aria-hidden="true" />
-        <div className="relative mx-auto grid max-w-6xl gap-12 md:grid-cols-[1.25fr_.75fr] md:items-end">
-          <div><p className="text-xs font-bold uppercase tracking-[0.18em]">The first 20–30</p><h2 className="mt-5 max-w-3xl font-display text-5xl leading-tight sm:text-7xl">Come help shape the circle.</h2><p className="mt-7 max-w-2xl text-lg leading-8 opacity-80">The Founding Circle won’t just join TrueNorth. You’ll suggest conversations, test ideas, share honest feedback and help decide what this community becomes.</p></div>
-          <div className="md:text-right"><Button asChild size="lg" className="bg-ink text-ink-foreground hover:bg-ink/90"><a href={trueNorthLinks.foundingCircle} target="_blank" rel="noreferrer">I’m interested <ArrowRight className="size-4" /></a></Button><p className="mt-4 text-sm opacity-70">No polished answers required.</p></div>
         </div>
       </section>
 
