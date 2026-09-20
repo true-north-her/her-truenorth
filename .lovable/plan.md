@@ -15,10 +15,11 @@ Add restrained, page-wide smooth scrolling without changing the hero film, delay
 - Verify desktop wheel, trackpad, keyboard, and anchor navigation are smooth and land on the correct sections.
 - Verify tablet/mobile below 768px use native touch scrolling with no delay.
 - Verify reduced-motion bypasses animated scrolling.
+- Verify progress, navigation emphasis, and one-time line drawing remain subtle and accurately follow the current chapter.
 - Confirm the hero timing and video playback remain unchanged, all links still work, and there are no console errors, horizontal overflow, or layout shifts.
 
-## Optional restrained scroll ideas
-Not included unless requested, to protect the calm editorial direction:
-- A very thin reading-progress line using the existing clay/sage palette.
-- Subtle active-state emphasis for the current navigation chapter.
-- Gentle one-time drawing of existing compass lines as each chapter enters view; no parallax or scroll-jacking.
+## Restrained scroll details
+- Add a very thin reading-progress line using the existing clay/sage palette, driven from the same animation frame without triggering layout work.
+- Add subtle active-state emphasis for the current navigation chapter, with `aria-current` support where appropriate.
+- Gently draw the existing compass and directional lines once as each chapter enters view; no parallax, scroll-jacking, or repeated animation.
+- Disable these animated treatments for reduced-motion users and keep every element fully visible.
