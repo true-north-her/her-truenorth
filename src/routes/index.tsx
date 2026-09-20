@@ -6,6 +6,7 @@ import compassPoster from "@/assets/truenorth-compass-poster.jpg.asset.json";
 import compassVideo from "@/assets/truenorth-compass.mp4.asset.json";
 import compassVideoWebm from "@/assets/truenorth-compass.webm.asset.json";
 import { Button } from "@/components/ui/button";
+import { SmoothScroll } from "@/components/smooth-scroll";
 import { trueNorthLinks } from "@/lib/truenorth-links";
 
 export const Route = createFileRoute("/")({
@@ -68,6 +69,7 @@ function Index() {
 
   return (
     <main className="overflow-hidden bg-background text-foreground">
+      <SmoothScroll />
       <header className="absolute inset-x-0 top-0 z-20 border-b border-foreground/15">
         <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-5 md:px-10">
           <a href="#top" className="hero-reveal hero-reveal-brand flex items-center gap-3" aria-label="TrueNorth home">
@@ -128,7 +130,7 @@ function Index() {
         </div>
       </section>
 
-      <section className="story-shift border-b border-foreground/10 px-5 py-32 md:px-10 md:py-48 lg:py-56">
+      <section id="shift" className="story-shift border-b border-foreground/10 px-5 py-32 md:px-10 md:py-48 lg:py-56">
         <div className="mx-auto max-w-6xl">
           <div className="story-reveal grid gap-12 md:grid-cols-[.34fr_1fr]" data-story-reveal>
             <div className="flex items-start gap-4">
