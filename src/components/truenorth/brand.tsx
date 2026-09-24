@@ -1,9 +1,9 @@
 import type { HTMLAttributes, ReactNode } from "react";
 import { Compass } from "lucide-react";
 
-import logoAsset from "@/assets/truenorth-logo.png.asset.json";
-import symbolAsset from "@/assets/truenorth-symbol.png.asset.json";
-import wordmarkAsset from "@/assets/truenorth-wordmark.png.asset.json";
+import logoAsset from "@/assets/truenorth-logo-v2.png.asset.json";
+import symbolAsset from "@/assets/truenorth-symbol-v2.png.asset.json";
+import wordmarkAsset from "@/assets/truenorth-wordmark-v2.png.asset.json";
 import { cn } from "@/lib/utils";
 
 type BrandMarkProps = HTMLAttributes<HTMLDivElement> & {
