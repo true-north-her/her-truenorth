@@ -7,3 +7,4 @@
 - [x] Replace only the hero with the uploaded compass video and timed content reveal
 - [x] Redesign the middle page as a continuous editorial community story
 - [x] Add desktop Lenis scrolling, reading progress, active chapters, and restrained line reveals
+- [ ] Establish the reusable Seaside Rose design system and apply it across the application
