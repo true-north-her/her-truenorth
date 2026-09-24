@@ -5,8 +5,10 @@ import { ArrowDown, ArrowRight, ArrowUpRight, Compass } from "lucide-react";
 import compassPoster from "@/assets/truenorth-compass-poster.jpg.asset.json";
 import compassVideo from "@/assets/truenorth-compass.mp4.asset.json";
 import compassVideoWebm from "@/assets/truenorth-compass.webm.asset.json";
+import seasideRose from "@/assets/truenorth-seaside-rose.jpg.asset.json";
 import { Button } from "@/components/ui/button";
 import { SmoothScroll } from "@/components/smooth-scroll";
+import { BrandMark, CompassDivider, EditorialLabel } from "@/components/truenorth/brand";
 import { trueNorthLinks } from "@/lib/truenorth-links";
 
 export const Route = createFileRoute("/")({
@@ -71,12 +73,9 @@ function Index() {
     <main className="overflow-hidden bg-background text-foreground">
       <SmoothScroll />
       <header className="absolute inset-x-0 top-0 z-20 border-b border-foreground/15">
-        <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-5 md:px-10">
-          <a href="#top" className="hero-reveal hero-reveal-brand flex items-center gap-3" aria-label="TrueNorth home">
-            <span className="grid size-9 place-items-center rounded-full border border-foreground/20">
-              <Compass className="size-5 text-primary" aria-hidden="true" />
-            </span>
-            <span className="font-display text-xl font-semibold">TrueNorth</span>
+        <div className="mx-auto grid h-20 max-w-7xl grid-cols-[minmax(0,1fr)_auto] items-center gap-4 px-5 md:flex md:justify-between md:px-10">
+          <a href="#top" className="hero-reveal hero-reveal-brand min-w-0" aria-label="TrueNorth home">
+            <BrandMark variant="wordmark" className="w-36" imageClassName="max-h-11" />
           </a>
           <nav className="hero-reveal hero-reveal-actions hidden items-center gap-8 text-sm md:flex" aria-label="Main navigation">
             <a className="transition-colors hover:text-primary" href="#inside">Inside the community</a>
@@ -109,8 +108,8 @@ function Index() {
 
         <div className="mx-auto flex w-full max-w-7xl items-end px-5 pb-14 pt-28 sm:pb-16 md:px-10 md:pb-20 lg:pb-24">
           <div className="max-w-2xl">
-            <p className="hero-reveal hero-reveal-brand mb-4 font-display text-xl font-medium sm:text-2xl">
-              TrueNorth
+            <p className="hero-reveal hero-reveal-brand mb-4 font-script text-2xl text-primary sm:text-3xl">
+              find your way back to yourself
             </p>
             <h1 className="hero-reveal hero-reveal-headline font-display text-5xl leading-[.96] font-medium sm:text-7xl lg:text-8xl">
               A calmer way<br />to <em className="text-primary">live.</em>
@@ -133,11 +132,7 @@ function Index() {
       <section id="shift" className="story-shift border-b border-foreground/10 px-5 py-32 md:px-10 md:py-48 lg:py-56">
         <div className="mx-auto max-w-6xl">
           <div className="story-reveal grid gap-12 md:grid-cols-[.34fr_1fr]" data-story-reveal>
-            <div className="flex items-start gap-4">
-              <span className="font-display text-lg text-primary">01</span>
-              <span className="mt-2 h-px w-10 bg-primary/45" aria-hidden="true" />
-              <p className="text-xs font-bold uppercase tracking-[0.18em] text-sage-foreground">The shift</p>
-            </div>
+            <EditorialLabel number="01">The shift</EditorialLabel>
             <div>
               <h2 className="max-w-4xl font-display text-5xl leading-[1.03] sm:text-7xl lg:text-8xl">
                 Less performing<br />your life.
@@ -156,7 +151,7 @@ function Index() {
         <div className="mx-auto max-w-6xl">
           <header className="story-reveal grid gap-10 md:grid-cols-[.55fr_1fr] md:items-end" data-story-reveal>
             <div>
-              <div className="mb-8 flex items-center gap-4"><span className="font-display text-lg text-primary">02</span><span className="h-px w-10 bg-primary/45" aria-hidden="true" /><p className="text-xs font-bold uppercase tracking-[0.18em] text-primary">Inside the community</p></div>
+              <EditorialLabel number="02" className="mb-8">Inside the community</EditorialLabel>
               <Compass className="size-8 text-primary/55" strokeWidth={1.2} aria-hidden="true" />
             </div>
             <div>
@@ -180,52 +175,58 @@ function Index() {
       </section>
 
       <div className="story-transition border-y border-foreground/10 bg-background px-5 py-24 md:px-10 md:py-32">
-        <div className="story-reveal mx-auto flex max-w-3xl flex-col items-center text-center" data-story-reveal>
-          <div className="direction-line" aria-hidden="true"><Compass className="size-6 bg-background text-primary" strokeWidth={1.2} /></div>
-          <p className="mt-10 font-display text-3xl leading-snug sm:text-4xl">We listen to what happens here.<br /><em className="text-primary">Then we decide what deserves to be built.</em></p>
-          <ArrowDown className="mt-10 size-5 text-primary/60" strokeWidth={1.25} aria-hidden="true" />
+        <div className="story-reveal mx-auto grid max-w-6xl gap-12 md:grid-cols-[.72fr_1fr] md:items-center md:gap-20" data-story-reveal>
+          <figure className="editorial-image relative aspect-[4/5] overflow-hidden rounded-editorial">
+            <img src={seasideRose.url} alt="A rose resting at the edge of calm ocean waves" className="size-full object-cover" loading="lazy" />
+            <figcaption className="absolute inset-x-5 bottom-5 font-script text-2xl text-hero-foreground">softness through change</figcaption>
+          </figure>
+          <div className="flex flex-col items-center text-center md:items-start md:text-left">
+            <CompassDivider />
+            <p className="mt-10 font-display text-3xl leading-snug sm:text-4xl">We listen to what happens here.<br /><em className="text-primary">Then we decide what deserves to be built.</em></p>
+            <ArrowDown className="mt-10 size-5 text-primary/60" strokeWidth={1.25} aria-hidden="true" />
+          </div>
         </div>
       </div>
 
-      <section id="how" className="bg-ink px-5 py-28 text-ink-foreground md:px-10 md:py-44">
+      <section id="how" className="bg-white px-5 py-28 text-foreground md:px-10 md:py-44">
         <div className="mx-auto max-w-6xl">
           <header className="story-reveal grid gap-10 md:grid-cols-[.55fr_1fr] md:items-end" data-story-reveal>
-            <div className="flex items-center gap-4"><span className="font-display text-lg text-sage-light">03</span><span className="h-px w-10 bg-sage-light/45" aria-hidden="true" /><p className="text-xs font-bold uppercase tracking-[0.18em] text-sage-light">How TrueNorth grows</p></div>
-            <div><h2 className="font-display text-5xl leading-[1.04] sm:text-7xl">We don’t build first<br /><em className="text-sage-light">and listen later.</em></h2><p className="mt-7 max-w-2xl text-lg leading-8 text-ink-muted">The community comes first. Useful things emerge from needs we hear more than once — then return to the community to be shaped again.</p></div>
+            <EditorialLabel number="03">How TrueNorth grows</EditorialLabel>
+            <div><h2 className="font-display text-5xl leading-[1.04] sm:text-7xl">We don’t build first<br /><em className="text-coastal-foreground">and listen later.</em></h2><p className="mt-7 max-w-2xl text-lg leading-8 text-muted-foreground">The community comes first. Useful things emerge from needs we hear more than once — then return to the community to be shaped again.</p></div>
           </header>
 
           <div className="story-reveal mt-24 md:mt-36" data-story-reveal>
             <div className="loop-layout" aria-label="The TrueNorth community-led building loop">
-              <div className="loop-center"><Compass className="mx-auto size-7 text-sage-light" strokeWidth={1.1} aria-hidden="true" /><p className="mt-4 font-display text-2xl leading-tight">Built with you,<br /><em>not for you.</em></p></div>
+              <div className="loop-center"><Compass className="mx-auto size-7 text-coastal-foreground" strokeWidth={1.1} aria-hidden="true" /><p className="mt-4 font-display text-2xl leading-tight">Built with you,<br /><em>not for you.</em></p></div>
               {loopStages.map(([number, title, copy], index) => (
                 <article key={title} className={`loop-stage loop-stage-${index + 1}`} tabIndex={0}>
-                  <span className="text-xs text-sage-light/70">{number}</span>
+                  <span className="text-xs text-coastal-foreground">{number}</span>
                   <h3 className="mt-2 font-display text-3xl">{title}</h3>
-                  <p className="loop-detail mt-3 max-w-48 text-sm leading-6 text-ink-muted">{copy}</p>
+                  <p className="loop-detail mt-3 max-w-48 text-sm leading-6 text-muted-foreground">{copy}</p>
                 </article>
               ))}
               <div className="loop-orbit" aria-hidden="true" />
             </div>
-            <p className="mt-14 text-center text-sm text-ink-muted">Listen, learn, make something small, and listen again.</p>
+            <p className="mt-14 text-center font-script text-2xl text-primary">Listen, learn, make something small, and listen again.</p>
           </div>
         </div>
       </section>
 
-      <section id="founding" className="relative overflow-hidden bg-clay px-5 py-28 text-clay-foreground md:px-10 md:py-40">
+      <section id="founding" className="relative overflow-hidden bg-secondary px-5 py-28 text-foreground md:px-10 md:py-40">
         <div className="founding-compass absolute -right-24 -top-24 size-80 rounded-full border border-clay-foreground/15" aria-hidden="true"><span /><span /></div>
         <div className="story-reveal relative mx-auto max-w-6xl" data-story-reveal>
-          <div className="mb-16 flex items-center gap-4"><span className="font-display text-lg">04</span><span className="h-px w-10 bg-clay-foreground/40" aria-hidden="true" /><p className="text-xs font-bold uppercase tracking-[0.18em]">The Founding Circle</p></div>
+          <EditorialLabel number="04" className="mb-16">The Founding Circle</EditorialLabel>
           <div className="grid gap-14 md:grid-cols-[1.15fr_.85fr] md:items-end">
             <div><h2 className="max-w-3xl font-display text-5xl leading-[1.04] sm:text-7xl">We’re starting small<br /><em>on purpose.</em></h2><p className="mt-7 max-w-2xl text-lg leading-8 opacity-80">The first 20–30 members aren’t simply an audience. They’ll help shape the conversations, experiments, priorities, and what gets built next.</p></div>
-            <div className="border-t border-clay-foreground/30 pt-8 md:justify-self-end"><p className="mb-7 max-w-sm font-display text-2xl leading-snug">Come as you are. Bring your questions, your experience, and your honest point of view.</p><Button asChild size="lg" className="bg-ink text-ink-foreground hover:bg-ink/90"><a href={trueNorthLinks.foundingCircle} target="_blank" rel="noreferrer">Become part of the Founding Circle <ArrowRight className="size-4" /></a></Button><p className="mt-4 text-sm opacity-70">No polished answers required.</p></div>
+            <div className="border-t border-foreground/20 pt-8 md:justify-self-end"><p className="mb-7 max-w-sm font-display text-2xl leading-snug">Come as you are. Bring your questions, your experience, and your honest point of view.</p><Button asChild size="lg"><a href={trueNorthLinks.foundingCircle} target="_blank" rel="noreferrer">Become part of the Founding Circle <ArrowRight className="size-4" /></a></Button><p className="mt-4 text-sm opacity-70">No polished answers required.</p></div>
           </div>
         </div>
       </section>
 
-      <footer className="bg-ink px-5 py-10 text-ink-foreground md:px-10">
+      <footer className="bg-primary px-5 py-10 text-primary-foreground md:px-10">
         <div className="mx-auto flex max-w-7xl flex-col justify-between gap-8 md:flex-row md:items-end">
-          <div><div className="flex items-center gap-3"><Compass className="size-6 text-sage-light" /><span className="font-display text-2xl">TrueNorth</span></div><p className="mt-3 text-sm text-ink-muted">A calmer way to live, together.</p></div>
-          <div className="flex flex-wrap gap-6 text-sm text-ink-muted"><a href="#inside" className="hover:text-ink-foreground">Community</a><a href="#how" className="hover:text-ink-foreground">How it works</a><a href={trueNorthLinks.foundingCircle} target="_blank" rel="noreferrer" className="hover:text-ink-foreground">Join the circle</a></div>
+          <div><BrandMark variant="monochrome" className="w-40" imageClassName="max-h-16" /><p className="mt-3 text-sm text-primary-foreground/75">A calmer way to live, together.</p></div>
+          <div className="flex flex-wrap gap-6 text-sm text-primary-foreground/75"><a href="#inside" className="hover:text-primary-foreground">Community</a><a href="#how" className="hover:text-primary-foreground">How it works</a><a href={trueNorthLinks.foundingCircle} target="_blank" rel="noreferrer" className="hover:text-primary-foreground">Join the circle</a></div>
         </div>
       </footer>
     </main>

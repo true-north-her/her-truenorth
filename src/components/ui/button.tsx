@@ -5,17 +5,17 @@ import { forwardRef, type ButtonHTMLAttributes } from "react";
 import { cn } from "@/lib/utils";
 
 const buttonVariants = cva(
-  "inline-flex min-h-11 items-center justify-center gap-2 rounded-full px-5 text-sm font-semibold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background disabled:pointer-events-none disabled:opacity-50",
+  "inline-flex min-h-11 items-center justify-center gap-2 rounded-button px-5 text-sm font-semibold transition-[color,background-color,border-color,transform,box-shadow] duration-ui ease-brand focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background active:translate-y-px disabled:pointer-events-none disabled:opacity-50",
   {
     variants: {
       variant: {
-        default: "bg-primary text-primary-foreground hover:bg-primary/90",
+        default: "bg-primary text-primary-foreground shadow-soft hover:bg-primary-hover hover:shadow-lift",
         outline:
-          "border border-border bg-transparent text-foreground hover:bg-secondary",
-        ghost: "bg-transparent text-foreground hover:bg-secondary",
-        link: "bg-transparent text-primary underline-offset-4 hover:underline",
+          "border border-secondary bg-background/75 text-primary hover:border-primary hover:bg-secondary",
+        ghost: "bg-transparent text-primary underline-offset-4 hover:bg-secondary/55 hover:underline",
+        link: "bg-transparent text-primary underline decoration-secondary underline-offset-4 hover:decoration-primary",
         destructive: "bg-destructive text-destructive-foreground hover:bg-destructive/90",
-        secondary: "bg-secondary text-secondary-foreground hover:bg-secondary/80",
+        secondary: "border border-secondary bg-background/75 text-primary hover:border-primary hover:bg-secondary",
       },
       size: {
         default: "h-11",
