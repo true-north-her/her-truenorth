@@ -1,4 +1,4 @@
-import type { HTMLAttributes } from "react";
+import type { HTMLAttributes, ReactNode } from "react";
 import { Compass } from "lucide-react";
 
 import logoAsset from "@/assets/truenorth-logo.png.asset.json";
@@ -26,7 +26,7 @@ function BrandMark({ variant = "primary", className, imageClassName, ...props }:
   );
 }
 
-function EditorialLabel({ number, children, inverse = false, className }: { number: string; children: React.ReactNode; inverse?: boolean; className?: string }) {
+function EditorialLabel({ number, children, inverse = false, className }: { number: string; children: ReactNode; inverse?: boolean; className?: string }) {
   return (
     <div className={cn("editorial-label", inverse && "editorial-label-inverse", className)}>
       <span className="font-display text-lg">{number}</span>

@@ -178,7 +178,7 @@ function Index() {
         <div className="story-reveal mx-auto grid max-w-6xl gap-12 md:grid-cols-[.72fr_1fr] md:items-center md:gap-20" data-story-reveal>
           <figure className="editorial-image relative aspect-[4/5] overflow-hidden rounded-editorial">
             <img src={seasideRose.url} alt="A rose resting at the edge of calm ocean waves" className="size-full object-cover" loading="lazy" />
-            <figcaption className="absolute inset-x-5 bottom-5 font-script text-2xl text-white">softness through change</figcaption>
+            <figcaption className="absolute inset-x-5 bottom-5 font-script text-2xl text-hero-foreground">softness through change</figcaption>
           </figure>
           <div className="flex flex-col items-center text-center md:items-start md:text-left">
             <CompassDivider />
