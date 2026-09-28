@@ -9,4 +9,3 @@
 - [x] Add desktop Lenis scrolling, reading progress, active chapters, and restrained line reveals
 - [x] Establish the reusable Seaside Rose design system and apply it across the application
 - [x] Add the interactive Meet Our Team editorial section with the three supplied portraits
-- [ ] Add the interactive Meet Our Team editorial section with the three supplied portraits
