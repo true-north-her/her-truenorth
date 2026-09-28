@@ -9,6 +9,7 @@ import seasideRose from "@/assets/truenorth-seaside-rose.jpg.asset.json";
 import { Button } from "@/components/ui/button";
 import { SmoothScroll } from "@/components/smooth-scroll";
 import { BrandMark, CompassDivider, EditorialLabel } from "@/components/truenorth/brand";
+import { MeetOurTeam } from "@/components/truenorth/meet-our-team";
 import { trueNorthLinks } from "@/lib/truenorth-links";
 
 export const Route = createFileRoute("/")({
@@ -211,6 +212,8 @@ function Index() {
           </div>
         </div>
       </section>
+
+      <MeetOurTeam />
 
       <section id="founding" className="relative overflow-hidden bg-secondary px-5 py-28 text-foreground md:px-10 md:py-40">
         <div className="founding-compass absolute -right-24 -top-24 size-80 rounded-full border border-clay-foreground/15" aria-hidden="true"><span /><span /></div>
