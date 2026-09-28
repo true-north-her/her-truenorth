@@ -8,4 +8,4 @@
 - [x] Redesign the middle page as a continuous editorial community story
 - [x] Add desktop Lenis scrolling, reading progress, active chapters, and restrained line reveals
 - [x] Establish the reusable Seaside Rose design system and apply it across the application
-- [ ] Add the interactive Meet Our Team editorial section with the three supplied portraits
+- [x] Add the interactive Meet Our Team editorial section with the three supplied portraits

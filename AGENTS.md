@@ -8,3 +8,5 @@
 > Commits you push to the connected branch sync back to Lovable and show up in
 > the editor, so keep the branch in a working state.
 <!-- LOVABLE:END -->
+
+- Keep team-member content in structured data and render it through the reusable `MeetOurTeam`/`TeamCard` pair so future members remain easy to add.
