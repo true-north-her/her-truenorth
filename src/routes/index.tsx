@@ -9,6 +9,7 @@ import seasideRose from "@/assets/truenorth-seaside-rose.jpg.asset.json";
 import { Button } from "@/components/ui/button";
 import { SmoothScroll } from "@/components/smooth-scroll";
 import { BrandMark, CompassDivider, EditorialLabel } from "@/components/truenorth/brand";
+import { FoundingCircle } from "@/components/truenorth/founding-circle";
 import { MeetOurTeam } from "@/components/truenorth/meet-our-team";
 import { trueNorthLinks } from "@/lib/truenorth-links";
 
@@ -215,16 +216,7 @@ function Index() {
 
       <MeetOurTeam />
 
-      <section id="founding" className="relative overflow-hidden bg-secondary px-5 py-28 text-foreground md:px-10 md:py-40">
-        <div className="founding-compass absolute -right-24 -top-24 size-80 rounded-full border border-clay-foreground/15" aria-hidden="true"><span /><span /></div>
-        <div className="story-reveal relative mx-auto max-w-6xl" data-story-reveal>
-          <EditorialLabel number="04" className="mb-16">The Founding Circle</EditorialLabel>
-          <div className="grid gap-14 md:grid-cols-[1.15fr_.85fr] md:items-end">
-            <div><h2 className="max-w-3xl font-display text-5xl leading-[1.04] sm:text-7xl">We’re starting small<br /><em>on purpose.</em></h2><p className="mt-7 max-w-2xl text-lg leading-8 opacity-80">The first 20–30 members aren’t simply an audience. They’ll help shape the conversations, experiments, priorities, and what gets built next.</p></div>
-            <div className="border-t border-foreground/20 pt-8 md:justify-self-end"><p className="mb-7 max-w-sm font-display text-2xl leading-snug">Come as you are. Bring your questions, your experience, and your honest point of view.</p><Button asChild size="lg"><a href={trueNorthLinks.foundingCircle} target="_blank" rel="noreferrer">Become part of the Founding Circle <ArrowRight className="size-4" /></a></Button><p className="mt-4 text-sm opacity-70">No polished answers required.</p></div>
-          </div>
-        </div>
-      </section>
+      <FoundingCircle />
 
       <footer className="bg-primary px-5 py-10 text-primary-foreground md:px-10">
         <div className="mx-auto flex max-w-7xl flex-col justify-between gap-8 md:flex-row md:items-end">
