@@ -51,6 +51,7 @@ const foundingFinds = [
 const APPLICATION_DEADLINE = "19 October 2026";
 
 function Sunburst() {
+  const round = (value: number) => Number(value.toFixed(2));
   const rayCount = 23;
   const rays = Array.from({ length: rayCount }, (_, index) => {
     const angle = (-84 + (index / (rayCount - 1)) * 168) * (Math.PI / 180);
@@ -59,13 +60,13 @@ function Sunburst() {
     const outer = isLong ? 98 : 74;
     const dotRadius = outer + 10;
     return {
-      x1: 150 + Math.sin(angle) * inner,
-      y1: 138 - Math.cos(angle) * inner,
-      x2: 150 + Math.sin(angle) * outer,
-      y2: 138 - Math.cos(angle) * outer,
+      x1: round(150 + Math.sin(angle) * inner),
+      y1: round(138 - Math.cos(angle) * inner),
+      x2: round(150 + Math.sin(angle) * outer),
+      y2: round(138 - Math.cos(angle) * outer),
       dot: index % 3 === 1,
-      dx: 150 + Math.sin(angle) * dotRadius,
-      dy: 138 - Math.cos(angle) * dotRadius,
+      dx: round(150 + Math.sin(angle) * dotRadius),
+      dy: round(138 - Math.cos(angle) * dotRadius),
       dotSize: index % 6 === 1 ? 2.4 : 1.6,
     };
   });
