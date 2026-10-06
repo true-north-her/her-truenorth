@@ -214,9 +214,11 @@ function Index() {
         </div>
       </section>
 
+      <FoundingCircle />
+
       <MeetOurTeam />
 
-      <FoundingCircle />
+
 
       <footer className="bg-primary px-5 py-10 text-primary-foreground md:px-10">
         <div className="mx-auto flex max-w-7xl flex-col justify-between gap-8 md:flex-row md:items-end">
