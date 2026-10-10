@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect } from "react";
-import { ArrowDown, ArrowRight, ArrowUpRight, Compass } from "lucide-react";
+import { ArrowDown, ArrowRight, ArrowUpRight, Compass, Instagram, Linkedin, Mail, Youtube } from "lucide-react";
 
 import compassPoster from "@/assets/truenorth-compass-poster.jpg.asset.json";
 import compassVideo from "@/assets/truenorth-compass.mp4.asset.json";
@@ -11,7 +11,8 @@ import { SmoothScroll } from "@/components/smooth-scroll";
 import { BrandMark, CompassDivider, EditorialLabel } from "@/components/truenorth/brand";
 import { FoundingCircle } from "@/components/truenorth/founding-circle";
 import { MeetOurTeam } from "@/components/truenorth/meet-our-team";
-import { trueNorthLinks } from "@/lib/truenorth-links";
+import { NewsletterSignup } from "@/components/truenorth/newsletter-signup";
+import { trueNorthLinks, trueNorthSocialLinks } from "@/lib/truenorth-links";
 
 export const Route = createFileRoute("/")({
   component: Index,
@@ -49,6 +50,13 @@ const loopStages = [
   ["04", "Test", "Small experiments meet real life before they grow."],
   ["05", "Listen", "What we learn returns to the community."],
 ];
+
+const socialIcons = {
+  LinkedIn: Linkedin,
+  Substack: Mail,
+  YouTube: Youtube,
+  Instagram,
+} as const;
 
 function Index() {
   useEffect(() => {
@@ -218,12 +226,32 @@ function Index() {
 
       <MeetOurTeam />
 
-
-
+      <NewsletterSignup />
       <footer className="bg-primary px-5 py-10 text-primary-foreground md:px-10">
-        <div className="mx-auto flex max-w-7xl flex-col justify-between gap-8 md:flex-row md:items-end">
+        <div className="mx-auto grid max-w-7xl gap-10 md:grid-cols-[1fr_auto] md:items-end">
           <div><BrandMark variant="monochrome" className="w-40" imageClassName="max-h-16" /><p className="mt-3 text-sm text-primary-foreground/75">A calmer way to live, together.</p></div>
-          <div className="flex flex-wrap gap-6 text-sm text-primary-foreground/75"><a href="#inside" className="hover:text-primary-foreground">Community</a><a href="#how" className="hover:text-primary-foreground">How it works</a><a href={trueNorthLinks.foundingCircle} target="_blank" rel="noreferrer" className="hover:text-primary-foreground">Join the circle</a></div>
+          <div className="flex flex-col gap-6 md:items-end">
+            <nav className="flex flex-wrap gap-6 text-sm text-primary-foreground/75" aria-label="Footer navigation"><a href="#inside" className="hover:text-primary-foreground">Community</a><a href="#how" className="hover:text-primary-foreground">How it works</a><a href={trueNorthLinks.foundingCircle} target="_blank" rel="noreferrer" className="hover:text-primary-foreground">Join the circle</a></nav>
+            <div className="footer-socials" aria-label="TrueNorth social links">
+              {trueNorthSocialLinks.map((social) => {
+                const Icon = socialIcons[social.label];
+                return (
+                  <a
+                    key={social.label}
+                    href={social.href}
+                    target={social.placeholder ? undefined : "_blank"}
+                    rel={social.placeholder ? undefined : "noreferrer"}
+                    aria-label={social.placeholder ? `${social.label} — link coming soon` : `TrueNorth on ${social.label}`}
+                    aria-disabled={social.placeholder || undefined}
+                    onClick={social.placeholder ? (event) => event.preventDefault() : undefined}
+                    title={social.placeholder ? `${social.label} — coming soon` : social.label}
+                  >
+                    <Icon aria-hidden="true" />
+                  </a>
+                );
+              })}
+            </div>
+          </div>
         </div>
       </footer>
     </main>
