@@ -10,3 +10,4 @@
 <!-- LOVABLE:END -->
 
 - Keep team-member content in structured data and render it through the reusable `MeetOurTeam`/`TeamCard` pair so future members remain easy to add.
+- Keep external TrueNorth destinations in shared structured link data so live URLs and placeholders remain easy to replace consistently.
