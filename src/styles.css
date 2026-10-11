@@ -203,7 +203,6 @@
 }
 
 .brand-monochrome img {
-  filter: grayscale(1) brightness(0) invert(1);
   opacity: .92;
 }
 

@@ -2,6 +2,7 @@ import type { HTMLAttributes, ReactNode } from "react";
 import { Compass } from "lucide-react";
 
 import logoAsset from "@/assets/truenorth-logo-v2.png.asset.json";
+import monochromeAsset from "@/assets/truenorth-footer-wordmark.png.asset.json";
 import symbolAsset from "@/assets/truenorth-symbol-v2.png.asset.json";
 import wordmarkAsset from "@/assets/truenorth-wordmark-v2.png.asset.json";
 import { cn } from "@/lib/utils";
@@ -12,7 +13,7 @@ type BrandMarkProps = HTMLAttributes<HTMLDivElement> & {
 };
 
 function BrandMark({ variant = "primary", className, imageClassName, ...props }: BrandMarkProps) {
-  const source = variant === "symbol" ? symbolAsset : variant === "wordmark" ? wordmarkAsset : logoAsset;
+  const source = variant === "symbol" ? symbolAsset : variant === "wordmark" ? wordmarkAsset : variant === "monochrome" ? monochromeAsset : logoAsset;
   const alt = variant === "symbol" ? "TrueNorth compass" : "TrueNorth";
 
   return (
