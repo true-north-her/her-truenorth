@@ -11,3 +11,4 @@
 - [x] Add the interactive Meet Our Team editorial section with the three supplied portraits
 - [x] Add the Founding Circle invitation section (deadline 19 Oct 2026, Google Form CTA) above Meet Our Team
 - [x] Add the Brevo newsletter signup and footer social links
+- [x] Fix the footer wordmark and activate the LinkedIn and YouTube links
