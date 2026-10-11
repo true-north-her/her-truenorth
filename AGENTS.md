@@ -11,3 +11,4 @@
 
 - Keep team-member content in structured data and render it through the reusable `MeetOurTeam`/`TeamCard` pair so future members remain easy to add.
 - Keep external TrueNorth destinations in shared structured link data so live URLs and placeholders remain easy to replace consistently.
+- Keep fixed navigation and scroll progress in `TrueNorthNavbar`; let `SmoothScroll` handle only desktop Lenis and offset-aware anchors so native mobile progress and chapter states have a single owner.
