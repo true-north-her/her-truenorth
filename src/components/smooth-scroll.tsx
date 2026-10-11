@@ -1,31 +1,16 @@
-import { useEffect, useRef } from "react";
-
-const chapterIds = ["inside", "how", "founding"] as const;
+import { useEffect } from "react";
 
 export function SmoothScroll() {
-  const progressRef = useRef<HTMLDivElement>(null);
-
   useEffect(() => {
     const desktopQuery = window.matchMedia("(min-width: 768px)");
     const reducedMotionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
     let cleanup: (() => void) | undefined;
     let cancelled = false;
 
-    const setActiveChapter = (id?: string) => {
-      document.querySelectorAll<HTMLAnchorElement>('a[href^="#"]').forEach((link) => {
-        const isCurrent = Boolean(id) && link.hash === `#${id}`;
-        link.toggleAttribute("data-current", isCurrent);
-        if (isCurrent) link.setAttribute("aria-current", "location");
-        else link.removeAttribute("aria-current");
-      });
-    };
-
     const start = async () => {
       cleanup?.();
       cleanup = undefined;
-      setActiveChapter();
       if (!desktopQuery.matches || reducedMotionQuery.matches) {
-        if (progressRef.current) progressRef.current.style.transform = "scaleX(0)";
         return;
       }
 
@@ -40,15 +25,8 @@ export function SmoothScroll() {
       });
       let frameId = 0;
 
-      const updateProgress = () => {
-        if (progressRef.current) {
-          progressRef.current.style.transform = `scaleX(${lenis.progress})`;
-        }
-      };
-
       const frame = (time: number) => {
         lenis.raf(time);
-        updateProgress();
         frameId = window.requestAnimationFrame(frame);
       };
 
@@ -61,30 +39,21 @@ export function SmoothScroll() {
         if (!destination) return;
         event.preventDefault();
         window.history.pushState(null, "", link.hash);
-        lenis.scrollTo(destination, { duration: 1.15 });
+        const offset = -parseFloat(window.getComputedStyle(destination).scrollMarginTop || "0");
+        lenis.scrollTo(destination, { duration: 1.15, offset, onComplete: () => {
+          if (!destination.hasAttribute("tabindex")) {
+            destination.setAttribute("tabindex", "-1");
+            destination.addEventListener("blur", () => destination.removeAttribute("tabindex"), { once: true });
+          }
+          destination.focus({ preventScroll: true });
+        } });
       };
-
-      const chapterObserver = new IntersectionObserver(
-        (entries) => {
-          const visible = entries
-            .filter((entry) => entry.isIntersecting)
-            .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
-          if (visible?.target.id) setActiveChapter(visible.target.id);
-        },
-        { rootMargin: "-28% 0px -52%", threshold: [0, 0.2, 0.5] },
-      );
-
-      chapterIds.forEach((id) => {
-        const section = document.getElementById(id);
-        if (section) chapterObserver.observe(section);
-      });
       document.addEventListener("click", clickHandler);
       frameId = window.requestAnimationFrame(frame);
 
       cleanup = () => {
         window.cancelAnimationFrame(frameId);
         document.removeEventListener("click", clickHandler);
-        chapterObserver.disconnect();
         lenis.destroy();
       };
     };
@@ -102,9 +71,5 @@ export function SmoothScroll() {
     };
   }, []);
 
-  return (
-    <div className="scroll-progress" aria-hidden="true">
-      <div ref={progressRef} />
-    </div>
-  );
+  return null;
 }

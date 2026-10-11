@@ -12,6 +12,7 @@ import { BrandMark, CompassDivider, EditorialLabel } from "@/components/truenort
 import { FoundingCircle } from "@/components/truenorth/founding-circle";
 import { MeetOurTeam } from "@/components/truenorth/meet-our-team";
 import { NewsletterSignup } from "@/components/truenorth/newsletter-signup";
+import { TrueNorthNavbar } from "@/components/truenorth/navbar";
 import { trueNorthLinks, trueNorthSocialLinks } from "@/lib/truenorth-links";
 
 export const Route = createFileRoute("/")({
@@ -80,24 +81,9 @@ function Index() {
   }, []);
 
   return (
-    <main className="overflow-hidden bg-background text-foreground">
+    <main className="truenorth-page overflow-hidden bg-background text-foreground">
       <SmoothScroll />
-      <header className="absolute inset-x-0 top-0 z-20 border-b border-foreground/15">
-        <div className="mx-auto grid h-20 max-w-7xl grid-cols-[minmax(0,1fr)_auto] items-center gap-4 px-5 md:flex md:justify-between md:px-10">
-          <a href="#top" className="hero-reveal hero-reveal-brand min-w-0" aria-label="TrueNorth home">
-            <BrandMark variant="wordmark" className="w-36" imageClassName="max-h-11" />
-          </a>
-          <nav className="hero-reveal hero-reveal-actions hidden items-center gap-8 text-sm md:flex" aria-label="Main navigation">
-            <a className="transition-colors hover:text-primary" href="#inside">Inside the community</a>
-            <a className="transition-colors hover:text-primary" href="#how">How it grows</a>
-          </nav>
-          <div className="hero-reveal hero-reveal-actions">
-            <Button asChild size="default">
-              <a href={trueNorthLinks.foundingCircle} target="_blank" rel="noreferrer">Join the circle <ArrowRight className="size-4" /></a>
-            </Button>
-          </div>
-        </div>
-      </header>
+      <TrueNorthNavbar />
 
       <section id="top" className="relative isolate flex min-h-[100svh] items-end overflow-hidden border-b border-foreground/10 pt-20">
         <video
