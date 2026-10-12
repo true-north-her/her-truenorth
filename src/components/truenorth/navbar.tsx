@@ -47,7 +47,7 @@ export function TrueNorthNavbar() {
       });
       if (progress >= .999) active = "newsletter";
       headerRef.current?.querySelectorAll<HTMLAnchorElement>("[data-chapter]").forEach((link) => {
-        if (link.dataset.chapter === active) link.setAttribute("aria-current", "location");
+        if (link.dataset["chapter"] === active) link.setAttribute("aria-current", "location");
         else link.removeAttribute("aria-current");
       });
     };
