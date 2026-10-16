@@ -15,25 +15,47 @@ import { NewsletterSignup } from "@/components/truenorth/newsletter-signup";
 import { TrueNorthNavbar } from "@/components/truenorth/navbar";
 import { trueNorthLinks, trueNorthSocialLinks } from "@/lib/truenorth-links";
 
+const SITE_URL = "https://her-truenorth.lovable.app/";
+
 export const Route = createFileRoute("/")({
+  staticData: { sitemap: true },
   component: Index,
   head: () => ({
     meta: [
-      { title: "TrueNorth — A Calmer Way to Live" },
+      { title: "TrueNorth — A Women-Only Community for Young Women" },
       {
         name: "description",
         content:
-          "A community where young women connect, reflect honestly, and build what they actually need — together.",
+          "TrueNorth is a calm, women-only community where young women connect through Girl Circles, honest conversation, mentorship, and skill swaps. Join the Founding Circle.",
       },
       { property: "og:title", content: "TrueNorth — A Calmer Way to Live" },
       {
         property: "og:description",
-        content: "A calmer community for honest reflection, real conversation, and mutual support.",
+        content: "A calm, women-only community for honest conversation, reflection, and mutual support. Join the Founding Circle.",
       },
       { property: "og:type", content: "website" },
+      { property: "og:url", content: SITE_URL },
       { name: "twitter:card", content: "summary_large_image" },
     ],
-    links: [{ rel: "canonical", href: "/" }],
+    links: [{ rel: "canonical", href: SITE_URL }],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "Organization",
+          name: "TrueNorth",
+          url: SITE_URL,
+          slogan: "A calmer way to live.",
+          description: "A women-only community where young women connect, reflect, and support each other.",
+          sameAs: [
+            "https://in.linkedin.com/company/her-true-north",
+            "https://www.youtube.com/@TrueNorth-her",
+            "https://substack.com/@hertruenorth3",
+          ],
+        }),
+      },
+    ],
   }),
 });
 
