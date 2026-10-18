@@ -13,3 +13,4 @@
 - [x] Add the Brevo newsletter signup and footer social links
 - [x] Fix the footer wordmark and activate the LinkedIn and YouTube links
 - [ ] Redesign the fixed navbar with editorial pills, mobile menu, and accurate coastal wave progress
+- [ ] Add AI-powered TrueNorth program recommendations for prospective members
