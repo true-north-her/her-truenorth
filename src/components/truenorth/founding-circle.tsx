@@ -1,7 +1,6 @@
 import { ArrowRight } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
-import { trueNorthLinks } from "@/lib/truenorth-links";
 
 type FoundingPillar = {
   title: string;
@@ -98,8 +97,8 @@ function FoundingCircle() {
             <span className="font-display">hey,</span> <span className="font-script">dreamer</span>
           </p>
           <h2 className="founding-declaration mx-auto max-w-2xl">
-            We&rsquo;re looking for our first girls —<br />
-            and we <strong>so</strong> hope one of them is you.
+            Our first circle has gathered —<br />
+            and the <strong>next</strong> one is coming.
           </h2>
           <div className="founding-letter mx-auto mt-10 max-w-xl">
             <p>
@@ -109,7 +108,7 @@ function FoundingCircle() {
               we&rsquo;re building for.
             </p>
             <p>
-              As one of our first 20–30 members, you won&rsquo;t just watch TrueNorth grow. You&rsquo;ll
+              When the next circle opens, you won&rsquo;t just watch TrueNorth grow. You&rsquo;ll
               experience it, question it, and help shape what it becomes — one honest conversation at a
               time. Come as you are, bring your perspective, and share only what you&rsquo;re comfortable
               sharing.
@@ -142,16 +141,16 @@ function FoundingCircle() {
         <div className="story-reveal founding-cta mt-16 md:mt-20" data-story-reveal>
           <p className="founding-deadline">
             <span className="founding-deadline-dot" aria-hidden="true" />
-            Applications close · {APPLICATION_DEADLINE}
+            Applications closed · {APPLICATION_DEADLINE}
           </p>
           <div className="mt-7 flex justify-center">
             <Button asChild size="lg">
-              <a href={trueNorthLinks.foundingCircle} target="_blank" rel="noreferrer">
-                Join the Founding Circle <ArrowRight className="size-4" />
+              <a href="#newsletter">
+                Stay close to TrueNorth <ArrowRight className="size-4" />
               </a>
             </Button>
           </div>
-          <p className="founding-note mt-5">No polished answers required — just you, as you are.</p>
+          <p className="founding-note mt-5">The first circle has gathered — new circles will open soon.</p>
         </div>
 
         <Sunburst />

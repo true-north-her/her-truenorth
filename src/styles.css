@@ -715,6 +715,129 @@
   stroke-linecap: round;
 }
 
+/* Community guide — AI program recommendations */
+.community-guide-section {
+  background: color-mix(in oklab, var(--accent) 20%, var(--brand-white));
+  border-top: 1px solid color-mix(in oklab, var(--primary) 12%, transparent);
+  border-bottom: 1px solid color-mix(in oklab, var(--primary) 12%, transparent);
+}
+
+.community-guide-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: .6rem;
+  font-size: .72rem;
+  font-weight: 700;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  color: var(--primary);
+}
+
+.community-guide-privacy {
+  font-size: .85rem;
+  font-style: italic;
+  color: var(--muted-foreground);
+}
+
+.community-guide-form-wrap {
+  padding: clamp(1.5rem, 4vw, 2.75rem);
+  border: 1px solid color-mix(in oklab, var(--primary) 18%, transparent);
+  border-radius: var(--radius-editorial);
+  background: color-mix(in oklab, var(--brand-white) 88%, transparent);
+  box-shadow: var(--shadow-editorial);
+}
+
+.community-guide-label {
+  display: block;
+  font-size: .72rem;
+  font-weight: 700;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--foreground);
+}
+
+.community-guide-input {
+  display: block;
+  width: 100%;
+  padding: .9rem 1rem;
+  border: 1px solid color-mix(in oklab, var(--primary) 22%, transparent);
+  border-radius: var(--radius-ui);
+  background: var(--brand-white);
+  color: var(--foreground);
+  font-size: .95rem;
+  line-height: 1.6;
+  resize: vertical;
+}
+
+.community-guide-input::placeholder { color: color-mix(in oklab, var(--muted-foreground) 80%, transparent); }
+.community-guide-input:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 1px;
+}
+
+.community-guide-hint { font-size: .8rem; color: var(--muted-foreground); }
+.community-guide-count { font-size: .78rem; color: var(--muted-foreground); font-variant-numeric: tabular-nums; }
+
+.community-guide-examples { display: flex; flex-wrap: wrap; gap: .55rem; }
+.community-guide-example {
+  border-color: color-mix(in oklab, var(--primary) 26%, transparent);
+  color: var(--primary);
+  font-size: .8rem;
+  border-radius: 999px;
+  background: color-mix(in oklab, var(--brand-white) 70%, transparent);
+}
+
+.community-guide-example:hover {
+  background: var(--secondary);
+  color: var(--secondary-foreground);
+}
+
+.community-guide-submit {
+  width: 100%;
+  background: var(--primary);
+  color: var(--primary-foreground);
+}
+.community-guide-submit:disabled { opacity: .55; }
+
+.community-guide-pending { font-size: .9rem; font-style: italic; color: var(--muted-foreground); }
+
+.community-guide-error {
+  margin-top: 1.5rem;
+  padding: .85rem 1rem;
+  border: 1px solid color-mix(in oklab, var(--primary) 30%, transparent);
+  border-radius: var(--radius-ui);
+  background: var(--secondary);
+  color: var(--primary);
+  font-size: .88rem;
+}
+
+.community-guide-answer {
+  margin-top: 2rem;
+  padding: 1.75rem 1.75rem 1.6rem;
+  border: 1px solid color-mix(in oklab, var(--primary) 16%, transparent);
+  border-radius: var(--radius-editorial);
+  background: var(--brand-white);
+  box-shadow: var(--shadow-soft);
+}
+
+.community-guide-answer-label {
+  font-size: .7rem;
+  font-weight: 700;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  color: var(--primary);
+}
+
+.community-guide-answer-line { margin-top: .9rem; font-size: .98rem; line-height: 1.7; color: var(--foreground); }
+.community-guide-answer-line:first-of-type { margin-top: 1.25rem; }
+
+.community-guide-actions { display: flex; flex-wrap: wrap; gap: .75rem; margin-top: 1.5rem; }
+
+@media (max-width: 47.999rem) {
+  .community-guide-form-wrap { padding: 1.4rem 1.25rem 1.6rem; }
+  .community-guide-answer { padding: 1.4rem 1.25rem; }
+}
+
 @media (max-width: 47.999rem) {
   .founding-greeting { font-size: 2.2rem; }
   .founding-grid { margin-top: 3.25rem; }

@@ -8,6 +8,7 @@ import compassVideoWebm from "@/assets/truenorth-compass.webm.asset.json";
 import seasideRose from "@/assets/truenorth-seaside-rose.jpg.asset.json";
 import { Button } from "@/components/ui/button";
 import { SmoothScroll } from "@/components/smooth-scroll";
+import { CommunityRecommender } from "@/components/truenorth/community-recommender";
 import { BrandMark, CompassDivider, EditorialLabel } from "@/components/truenorth/brand";
 import { FoundingCircle } from "@/components/truenorth/founding-circle";
 import { MeetOurTeam } from "@/components/truenorth/meet-our-team";
@@ -229,6 +230,8 @@ function Index() {
           </div>
         </div>
       </section>
+
+      <CommunityRecommender />
 
       <FoundingCircle />
 
