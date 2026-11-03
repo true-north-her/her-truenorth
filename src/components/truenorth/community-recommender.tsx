@@ -101,10 +101,10 @@ export function CommunityRecommender() {
                 ))}
                 <div className="community-guide-actions">
                   <Button asChild size="sm">
-                    <a href={trueNorthLinks.foundingCircle} target="_blank" rel="noreferrer">Explore the Founding Circle <ArrowRight className="size-4" aria-hidden="true" /></a>
+                    <a href={trueNorthLinks.substack} target="_blank" rel="noreferrer">Read TrueNorth on Substack <ArrowRight className="size-4" aria-hidden="true" /></a>
                   </Button>
                   <Button asChild size="sm" variant="ghost">
-                    <a href={trueNorthLinks.substack} target="_blank" rel="noreferrer">Read TrueNorth on Substack</a>
+                    <a href="#newsletter">Get Letters from TrueNorth</a>
                   </Button>
                 </div>
               </div>

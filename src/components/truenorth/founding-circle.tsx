@@ -97,8 +97,8 @@ function FoundingCircle() {
             <span className="font-display">hey,</span> <span className="font-script">dreamer</span>
           </p>
           <h2 className="founding-declaration mx-auto max-w-2xl">
-            We&rsquo;re looking for our first girls —<br />
-            and we <strong>so</strong> hope one of them is you.
+            Our first circle has gathered —<br />
+            and the <strong>next</strong> one is coming.
           </h2>
           <div className="founding-letter mx-auto mt-10 max-w-xl">
             <p>
@@ -108,7 +108,7 @@ function FoundingCircle() {
               we&rsquo;re building for.
             </p>
             <p>
-              As one of our first 20–30 members, you won&rsquo;t just watch TrueNorth grow. You&rsquo;ll
+              When the next circle opens, you won&rsquo;t just watch TrueNorth grow. You&rsquo;ll
               experience it, question it, and help shape what it becomes — one honest conversation at a
               time. Come as you are, bring your perspective, and share only what you&rsquo;re comfortable
               sharing.
