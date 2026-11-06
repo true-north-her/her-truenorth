@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Compass, Sparkles } from "lucide-react";
 
-import abhijnaImage from "@/assets/ABHIJNA-LAXMI.png.asset.json";
+import abhijnaImage from "@/assets/abhijna-laxmi-portrait.png";
 import komalImage from "@/assets/KOMAL-HARSHITA.png.asset.json";
 import niharikaImage from "@/assets/NIHARIKA-NIRANJAN.png.asset.json";
 import { Button } from "@/components/ui/button";
@@ -35,7 +35,7 @@ const teamMembers: TeamMember[] = [
     description: "Bringing people, ideas, and possibilities closer.",
     keywords: ["People", "Community", "Connection"],
     label: "Connecting women",
-    image: abhijnaImage.url,
+    image: abhijnaImage,
     alt: "Abhijna Laxmi — The Connector, TrueNorth",
     theme: "connector",
   },
