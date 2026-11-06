@@ -832,6 +832,7 @@
 .community-guide-answer-line:first-of-type { margin-top: 1.25rem; }
 
 .community-guide-actions { display: flex; flex-wrap: wrap; gap: .75rem; margin-top: 1.5rem; }
+.community-guide-share-status { margin-top: .75rem; font-size: .82rem; color: var(--muted-foreground); }
 
 @media (max-width: 47.999rem) {
   .community-guide-form-wrap { padding: 1.4rem 1.25rem 1.6rem; }

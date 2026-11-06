@@ -42,16 +42,20 @@ export function CommunityRecommender() {
       }
       setShareFeedback("copied");
     } catch {
-      const temporaryInput = document.createElement("textarea");
-      temporaryInput.value = shareText;
-      temporaryInput.setAttribute("readonly", "");
-      temporaryInput.style.position = "fixed";
-      temporaryInput.style.opacity = "0";
-      document.body.appendChild(temporaryInput);
-      temporaryInput.select();
-      const copied = document.execCommand("copy");
-      temporaryInput.remove();
-      setShareFeedback(copied ? "copied" : "error");
+      try {
+        const temporaryInput = document.createElement("textarea");
+        temporaryInput.value = shareText;
+        temporaryInput.setAttribute("readonly", "");
+        temporaryInput.style.position = "fixed";
+        temporaryInput.style.opacity = "0";
+        document.body.appendChild(temporaryInput);
+        temporaryInput.select();
+        const copied = document.execCommand("copy");
+        temporaryInput.remove();
+        setShareFeedback(copied ? "copied" : "error");
+      } catch {
+        setShareFeedback("error");
+      }
     }
   };
 
@@ -148,7 +152,11 @@ export function CommunityRecommender() {
                     {shareFeedback === "copied" ? "Copied" : shareFeedback === "shared" ? "Shared" : "Share or copy"}
                   </Button>
                 </div>
-                {shareFeedback === "error" && <p className="community-guide-share-status" role="status">Couldn’t copy just now. Please try again.</p>}
+                {shareFeedback && (
+                  <p className="community-guide-share-status" role="status">
+                    {shareFeedback === "copied" ? "Recommendation copied to your clipboard." : shareFeedback === "shared" ? "Recommendation shared." : "Couldn’t copy just now. Please try again."}
+                  </p>
+                )}
               </div>
             )}
           </div>
