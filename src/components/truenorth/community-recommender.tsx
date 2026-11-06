@@ -1,5 +1,5 @@
 import { useState, type FormEvent } from "react";
-import { ArrowRight, Compass } from "lucide-react";
+import { ArrowRight, Check, Compass, Share2 } from "lucide-react";
 import { useServerFn } from "@tanstack/react-start";
 
 import { Button } from "@/components/ui/button";
@@ -17,12 +17,49 @@ export function CommunityRecommender() {
   const [recommendations, setRecommendations] = useState("");
   const [error, setError] = useState("");
   const [pending, setPending] = useState(false);
+  const [shareFeedback, setShareFeedback] = useState<"copied" | "shared" | "error" | "">("");
   const recommend = useServerFn(getCommunityRecommendations);
+
+  const handleShare = async () => {
+    setShareFeedback("");
+    const shareText = `${recommendations}\n\nExplore TrueNorth: ${window.location.origin}`;
+
+    if (navigator.share) {
+      try {
+        await navigator.share({ title: "My TrueNorth starting point", text: shareText });
+        setShareFeedback("shared");
+        return;
+      } catch (shareError) {
+        if (shareError instanceof DOMException && shareError.name === "AbortError") return;
+      }
+    }
+
+    try {
+      if (navigator.clipboard?.writeText) {
+        await navigator.clipboard.writeText(shareText);
+      } else {
+        throw new Error("Clipboard API unavailable");
+      }
+      setShareFeedback("copied");
+    } catch {
+      const temporaryInput = document.createElement("textarea");
+      temporaryInput.value = shareText;
+      temporaryInput.setAttribute("readonly", "");
+      temporaryInput.style.position = "fixed";
+      temporaryInput.style.opacity = "0";
+      document.body.appendChild(temporaryInput);
+      temporaryInput.select();
+      const copied = document.execCommand("copy");
+      temporaryInput.remove();
+      setShareFeedback(copied ? "copied" : "error");
+    }
+  };
 
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     setError("");
     setRecommendations("");
+    setShareFeedback("");
     setPending(true);
 
     try {
@@ -106,7 +143,12 @@ export function CommunityRecommender() {
                   <Button asChild size="sm" variant="ghost">
                     <a href="#newsletter">Get Letters from TrueNorth</a>
                   </Button>
+                  <Button type="button" size="sm" variant="outline" onClick={handleShare}>
+                    {shareFeedback === "copied" ? <Check className="size-4" aria-hidden="true" /> : <Share2 className="size-4" aria-hidden="true" />}
+                    {shareFeedback === "copied" ? "Copied" : shareFeedback === "shared" ? "Shared" : "Share or copy"}
+                  </Button>
                 </div>
+                {shareFeedback === "error" && <p className="community-guide-share-status" role="status">Couldn’t copy just now. Please try again.</p>}
               </div>
             )}
           </div>
