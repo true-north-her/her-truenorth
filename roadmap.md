@@ -14,3 +14,4 @@
 - [x] Fix the footer wordmark and activate the LinkedIn and YouTube links
 - [x] Redesign the fixed navbar with editorial pills, mobile menu, and accurate coastal wave progress
 - [x] Add AI-powered TrueNorth program recommendations for prospective members
+- [ ] Build the integrated TrueNorth Archipelago page at `/islands`, including the interactive map, island details, shared navigation, and responsive QA

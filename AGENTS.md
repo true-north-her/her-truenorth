@@ -12,3 +12,4 @@
 - Keep team-member content in structured data and render it through the reusable `MeetOurTeam`/`TeamCard` pair so future members remain easy to add.
 - Keep external TrueNorth destinations in shared structured link data so live URLs and placeholders remain easy to replace consistently.
 - Keep fixed navigation and scroll progress in `TrueNorthNavbar`; let `SmoothScroll` handle only desktop Lenis and offset-aware anchors so native mobile progress and chapter states have a single owner.
+- Keep the Archipelago at `/islands` with editable island content in structured data and reusable map, marker, and detail components, so its new experience stays separate from the existing home page.
