@@ -1,11 +1,13 @@
 import { useEffect, useRef, useState } from "react";
 import { ArrowUpRight, Compass, Menu, X } from "lucide-react";
+import { Link, useRouterState } from "@tanstack/react-router";
 import { Button } from "@/components/ui/button";
 import { BrandMark } from "@/components/truenorth/brand";
 import { trueNorthLinks } from "@/lib/truenorth-links";
 
 const navigation = [
   { id: "inside", label: "Inside the community" },
+  { id: "islands", label: "The Islands" },
   { id: "how", label: "How it grows" },
   { id: "team", label: "Meet the team" },
   { id: "newsletter", label: "Connect with us" },
@@ -27,6 +29,7 @@ function CoastalProgress({ fillRef }: { fillRef: React.RefObject<SVGSVGElement |
 
 export function TrueNorthNavbar() {
   const [open, setOpen] = useState(false);
+  const pathname = useRouterState({ select: (state) => state.location.pathname });
   const headerRef = useRef<HTMLElement>(null);
   const fillRef = useRef<SVGSVGElement>(null);
   const toggleRef = useRef<HTMLButtonElement>(null);
@@ -86,8 +89,8 @@ export function TrueNorthNavbar() {
     };
   }, [open]);
 
-  const join = <Button asChild className="navbar-cta"><a href={trueNorthLinks.foundingCircle} target="_blank" rel="noreferrer" onClick={() => setOpen(false)}>Join the circle <ArrowUpRight className="size-4" aria-hidden="true" /></a></Button>;
-  const links = navigation.map(({ id, label }) => <Button key={id} asChild variant="ghost" className="navbar-pill"><a href={`#${id}`} data-chapter={id} onClick={() => setOpen(false)}>{label}</a></Button>);
+  const join = <Button asChild className="navbar-cta"><a href={pathname === "/" ? "#newsletter" : "/#newsletter"} onClick={() => setOpen(false)}>Stay close <ArrowUpRight className="size-4" aria-hidden="true" /></a></Button>;
+  const links = navigation.map(({ id, label }) => <Button key={id} asChild variant="ghost" className="navbar-pill">{id === "islands" ? <Link to="/islands" aria-current={pathname === "/islands" ? "page" : undefined} onClick={() => setOpen(false)}>{label}</Link> : <a href={pathname === "/" ? `#${id}` : `/#${id}`} data-chapter={id} onClick={() => setOpen(false)}>{label}</a>}</Button>);
 
   return (
     <header ref={headerRef} className="truenorth-navbar">
