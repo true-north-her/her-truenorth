@@ -715,6 +715,187 @@
   stroke-linecap: round;
 }
 
+/* TrueNorth Archipelago */
+.islands-page {
+  --island-rose: var(--accent);
+  --island-cream: var(--background);
+  --island-paper: var(--brand-white);
+  --island-ocean: var(--coastal);
+}
+
+.archipelago-hero {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  background: var(--background);
+}
+
+.archipelago-hero::before {
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  background: linear-gradient(90deg, color-mix(in oklab, var(--background) 98%, transparent) 0%, color-mix(in oklab, var(--background) 90%, transparent) 52%, color-mix(in oklab, var(--background) 10%, transparent) 100%);
+  content: "";
+}
+
+.archipelago-hero-inner {
+  position: relative;
+  display: grid;
+  min-height: 31rem;
+  grid-template-columns: minmax(0, 1.04fr) minmax(18rem, .96fr);
+  align-items: center;
+  gap: clamp(2rem, 5vw, 5rem);
+}
+
+.archipelago-hero-copy { position: relative; z-index: 2; padding-block: 2.75rem; }
+.archipelago-eyebrow { display: flex; align-items: center; gap: .7rem; color: var(--primary); font-size: .72rem; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; }
+.archipelago-eyebrow svg { width: 1.25rem; height: 1.25rem; flex: 0 0 auto; stroke-width: 1.3; }
+.archipelago-hero-title { max-width: 42rem; margin-top: 1.25rem; color: var(--primary); font-size: clamp(2.65rem, 5vw, 4.8rem); line-height: 1.06; }
+.archipelago-hero-title em { display: block; font-weight: 400; }
+.archipelago-hero-description { max-width: 38rem; margin-top: 1.4rem; color: var(--foreground); font-size: .94rem; line-height: 1.75; }
+.archipelago-hero-description p + p { margin-top: .45rem; }
+.archipelago-explore-button { min-height: 3rem; gap: .6rem; border-radius: 999px; padding-inline: 1.35rem; }
+.archipelago-explore-button svg { width: 1rem; height: 1rem; transition: transform 240ms ease; }
+.archipelago-explore-button:hover svg { transform: translateY(3px); }
+.archipelago-hero-image { position: absolute; z-index: -1; inset: 0 -8vw 0 38%; overflow: hidden; }
+.archipelago-hero-image::after { position: absolute; inset: 0; background: linear-gradient(90deg, var(--background) 0%, color-mix(in oklab, var(--background) 75%, transparent) 25%, transparent 68%), linear-gradient(0deg, color-mix(in oklab, var(--background) 20%, transparent), transparent 40%); content: ""; }
+.archipelago-hero-image img { width: 100%; height: 100%; object-fit: cover; object-position: center 56%; }
+.archipelago-hero-image figcaption { position: absolute; right: 7%; bottom: 9%; z-index: 1; color: var(--primary); font-size: 1.6rem; transform: rotate(-5deg); }
+.archipelago-hero-stamp { position: absolute; right: 2.5%; bottom: 5%; display: grid; width: 6.5rem; aspect-ratio: 1; place-items: center; border: 1px solid color-mix(in oklab, var(--primary) 36%, transparent); border-radius: 50%; color: var(--primary); text-align: center; }
+.archipelago-hero-stamp svg { position: absolute; inset: .35rem; width: calc(100% - .7rem); height: calc(100% - .7rem); opacity: .28; }
+.archipelago-hero-stamp span { position: relative; font-family: var(--font-display); font-size: .65rem; line-height: 1.45; }
+
+.archipelago-map-section { background: var(--coastal); }
+.archipelago-map-heading { display: grid; grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr); align-items: end; column-gap: 4rem; }
+.archipelago-map-heading .archipelago-eyebrow { grid-column: 1 / -1; }
+.archipelago-map-heading h2 { color: var(--primary); }
+.archipelago-map-heading h2 em { color: var(--coastal-foreground); font-weight: 400; }
+.archipelago-map-frame { position: relative; isolation: isolate; overflow: hidden; aspect-ratio: 3 / 2; border: 1px solid color-mix(in oklab, var(--brand-white) 65%, transparent); border-radius: 1.2rem; background: var(--coastal); box-shadow: var(--shadow-editorial); }
+.archipelago-map-art { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.archipelago-map-wash { position: absolute; z-index: 1; inset: 0; background: linear-gradient(180deg, color-mix(in oklab, var(--coastal) 8%, transparent), transparent 27%, transparent 67%, color-mix(in oklab, var(--foreground) 42%, transparent)); pointer-events: none; }
+.archipelago-marker { position: absolute; z-index: 2; display: grid; grid-template-columns: 2.4rem minmax(0, 1fr); align-items: center; gap: .55rem; min-width: 11rem; max-width: min(16rem, 35%); padding: .65rem .85rem .65rem .65rem; border: 1px solid color-mix(in oklab, var(--primary) 22%, transparent); border-radius: 999px; background: color-mix(in oklab, var(--brand-white) 94%, transparent); box-shadow: var(--shadow-lift); color: var(--primary); text-decoration: none; transition: transform 260ms var(--ease-brand), box-shadow 260ms ease, background 260ms ease; }
+.archipelago-marker:hover, .archipelago-marker:focus-visible, .archipelago-marker.is-selected { z-index: 4; transform: translateY(-4px); box-shadow: var(--shadow-editorial); }
+.archipelago-marker:focus-visible { outline: 2px solid var(--primary); outline-offset: 4px; }
+.archipelago-marker-icon { display: grid; width: 2.4rem; height: 2.4rem; flex: 0 0 auto; place-items: center; border-radius: 50%; background: var(--secondary); color: var(--primary); }
+.archipelago-marker-icon svg { width: 1.2rem; height: 1.2rem; }
+.archipelago-marker-copy { display: grid; min-width: 0; gap: .12rem; }
+.archipelago-marker-name { overflow: hidden; font-family: var(--font-display); font-size: .9rem; font-weight: 700; line-height: 1.2; text-overflow: ellipsis; white-space: nowrap; }
+.archipelago-marker-identity { font-size: .68rem; font-style: italic; line-height: 1.2; }
+.archipelago-marker-tip { position: absolute; left: 50%; bottom: calc(100% + .5rem); width: max-content; max-width: 12rem; padding: .35rem .6rem; border-radius: .4rem; background: var(--primary); color: var(--primary-foreground); font-size: .68rem; opacity: 0; pointer-events: none; transform: translate(-50%, 4px); transition: opacity 180ms ease, transform 180ms ease; }
+.archipelago-marker:hover .archipelago-marker-tip, .archipelago-marker:focus-visible .archipelago-marker-tip { opacity: 1; transform: translate(-50%, 0); }
+.archipelago-marker-creative { left: 7%; bottom: 19%; }
+.archipelago-marker-muse { right: 6%; bottom: 16%; }
+.archipelago-marker-harbor { top: 31%; left: 50%; transform: translateX(-50%); }
+.archipelago-marker-harbor:hover, .archipelago-marker-harbor:focus-visible, .archipelago-marker-harbor.is-selected { transform: translate(-50%, -4px); }
+.archipelago-map-compass { position: absolute; z-index: 2; top: 5%; right: 4%; display: grid; width: 3.4rem; aspect-ratio: 1; place-items: center; color: var(--primary); }
+.archipelago-map-compass svg { width: 100%; height: 100%; }
+.archipelago-map-compass span { position: absolute; top: -.55rem; font-family: var(--font-display); font-size: .65rem; }
+.archipelago-map-caption { position: absolute; z-index: 2; bottom: 1rem; left: 1.25rem; display: flex; align-items: center; gap: .5rem; color: var(--primary-foreground); font-family: var(--font-display); font-size: .9rem; }
+.archipelago-map-caption svg { width: 1rem; height: 1rem; flex: 0 0 auto; }
+.archipelago-map-index { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; margin-top: 1.25rem; }
+.archipelago-map-index a { display: grid; grid-template-columns: auto minmax(0, 1fr) auto; align-items: center; gap: .7rem; min-width: 0; padding: .85rem .25rem; border-bottom: 1px solid color-mix(in oklab, var(--coastal-foreground) 26%, transparent); color: var(--foreground); font-family: var(--font-display); font-size: .87rem; text-decoration: none; transition: color 180ms ease, border-color 180ms ease; }
+.archipelago-map-index a:hover, .archipelago-map-index a:focus-visible { border-color: var(--primary); color: var(--primary); }
+.archipelago-map-index a span { color: var(--primary); font-family: var(--font-sans); font-size: .65rem; font-weight: 700; }
+.archipelago-map-index a svg { width: 1rem; height: 1rem; }
+
+.island-details { background: var(--background); }
+.island-details-heading { padding-block: 1rem 1.75rem; }
+.island-detail-section { scroll-margin-top: calc(var(--navbar-height) + 24px); border: 1px solid color-mix(in oklab, var(--primary) 12%, transparent); border-radius: 1.15rem; transition: box-shadow 260ms ease, transform 260ms ease; }
+.island-detail-section:hover { box-shadow: var(--shadow-soft); }
+.island-detail-creative { background: color-mix(in oklab, var(--secondary) 45%, var(--brand-white)); }
+.island-detail-muse { background: color-mix(in oklab, var(--background) 48%, var(--brand-white)); }
+.island-detail-harbor { background: color-mix(in oklab, var(--coastal) 24%, var(--brand-white)); }
+.island-detail-inner { display: grid; grid-template-columns: minmax(0, 1.12fr) minmax(16rem, .9fr) minmax(17rem, .95fr); align-items: center; gap: clamp(1.5rem, 3vw, 3rem); }
+.island-detail-story { min-width: 0; }
+.island-number, .island-activities-label { color: var(--primary); font-size: .68rem; font-weight: 700; letter-spacing: .17em; text-transform: uppercase; }
+.island-identity { display: inline-flex; margin-top: .9rem; padding: .3rem .75rem; border-radius: 999px; background: var(--accent); color: var(--foreground); font-size: .68rem; font-weight: 700; }
+.island-detail-harbor .island-identity { background: var(--coastal); color: var(--coastal-foreground); }
+.island-title { margin-top: .8rem; color: var(--primary); font-size: clamp(2rem, 3.3vw, 3.1rem); line-height: 1.13; }
+.island-tagline { margin-top: .55rem; color: var(--primary); font-size: 1.12rem; line-height: 1.4; }
+.island-description { max-width: 37rem; margin-top: 1rem; color: var(--muted-foreground); font-size: .88rem; line-height: 1.7; }
+.island-detail-activities { min-width: 0; padding-left: clamp(1rem, 2vw, 2rem); border-left: 1px solid color-mix(in oklab, var(--primary) 20%, transparent); }
+.island-detail-activities ul { display: grid; gap: .8rem; margin-top: 1rem; }
+.island-detail-activities li { display: grid; grid-template-columns: 1.1rem minmax(0, 1fr); align-items: start; gap: .6rem; color: var(--foreground); font-size: .79rem; line-height: 1.45; }
+.island-detail-activities li svg { width: 1rem; height: 1rem; color: var(--primary); }
+.island-lead { display: grid; grid-template-columns: 2rem auto minmax(0, 1fr); align-items: center; gap: .55rem; margin-top: 1.45rem; padding-top: 1rem; border-top: 1px solid color-mix(in oklab, var(--primary) 16%, transparent); }
+.island-lead-icon { display: grid; width: 1.8rem; height: 1.8rem; place-items: center; border-radius: 50%; background: color-mix(in oklab, var(--primary) 10%, transparent); color: var(--primary); }
+.island-lead-icon svg { width: 1rem; height: 1rem; }
+.island-lead-caption { color: var(--muted-foreground); font-size: .6rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; }
+.island-lead strong { min-width: 0; color: var(--foreground); font-size: .78rem; }
+.island-detail-art { position: relative; min-width: 0; overflow: hidden; aspect-ratio: 1.52; border-radius: .75rem; background: var(--coastal); }
+.island-detail-art img { width: 100%; height: 100%; object-fit: cover; transition: transform 500ms var(--ease-brand); }
+.island-detail-section:hover .island-detail-art img { transform: scale(1.035); }
+.island-detail-art::after { position: absolute; inset: 45% 0 0; background: linear-gradient(0deg, color-mix(in oklab, var(--foreground) 55%, transparent), transparent); content: ""; pointer-events: none; }
+.island-detail-art figcaption { position: absolute; z-index: 1; bottom: .8rem; left: .9rem; display: flex; align-items: center; gap: .4rem; color: var(--primary-foreground); font-family: var(--font-display); font-size: .84rem; }
+.island-detail-art figcaption svg { width: 1rem; height: 1rem; }
+
+.archipelago-closing { position: relative; isolation: isolate; overflow: hidden; background: var(--secondary); }
+.archipelago-closing-art { position: absolute; z-index: -2; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center 67%; }
+.archipelago-closing::before { position: absolute; z-index: -1; inset: 0; background: color-mix(in oklab, var(--background) 83%, transparent); content: ""; }
+.archipelago-closing-content { position: relative; }
+.archipelago-closing-content .archipelago-eyebrow { color: var(--primary); }
+.archipelago-closing-compass { width: 5rem; height: 5rem; color: var(--primary); }
+.archipelago-closing-content h2 { color: var(--primary); }
+.archipelago-closing-content p:not(.archipelago-eyebrow) { color: var(--foreground); }
+.islands-footer .direction-line::before, .islands-footer .direction-line::after { background: color-mix(in oklab, var(--primary-foreground) 40%, transparent); }
+
+.archipelago-reveal { opacity: 0; transform: translateY(16px); transition: opacity 650ms var(--ease-brand), transform 650ms var(--ease-brand); }
+.archipelago-reveal[data-visible="true"] { opacity: 1; transform: translateY(0); }
+
+@media (max-width: 63.999rem) {
+  .island-detail-inner { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+  .island-detail-art { grid-column: 1 / -1; grid-row: 2; aspect-ratio: 2.2; }
+  .island-detail-activities { padding-left: 1.35rem; }
+}
+
+@media (max-width: 47.999rem) {
+  .archipelago-hero { padding-top: 1.1rem; }
+  .archipelago-hero-inner { min-height: 0; grid-template-columns: minmax(0, 1fr); gap: 0; }
+  .archipelago-hero-copy { padding-block: 1.2rem 1.5rem; }
+  .archipelago-hero-title { max-width: 35rem; font-size: clamp(2.5rem, 10vw, 3.5rem); }
+  .archipelago-hero-description { font-size: .88rem; }
+  .archipelago-hero-image { position: relative; z-index: 0; inset: auto; height: 15rem; margin: 0 -1.25rem -2rem; }
+  .archipelago-hero-image::after { background: linear-gradient(0deg, color-mix(in oklab, var(--background) 24%, transparent), transparent 52%); }
+  .archipelago-hero-image img { object-position: center 58%; }
+  .archipelago-hero-image figcaption { right: 8%; bottom: 10%; font-size: 1.3rem; }
+  .archipelago-hero-stamp { right: .5rem; bottom: 1rem; width: 4.5rem; }
+  .archipelago-hero-stamp span { font-size: .5rem; }
+  .archipelago-map-heading { grid-template-columns: minmax(0, 1fr); gap: 0; }
+  .archipelago-map-heading .archipelago-eyebrow { grid-column: auto; }
+  .archipelago-map-frame { aspect-ratio: 1 / 1.12; border-radius: .85rem; }
+  .archipelago-map-art { object-position: center; }
+  .archipelago-marker { grid-template-columns: 1.8rem minmax(0, 1fr); gap: .4rem; min-width: 0; max-width: 48%; padding: .4rem .55rem .4rem .4rem; }
+  .archipelago-marker-icon { width: 1.8rem; height: 1.8rem; }
+  .archipelago-marker-icon svg { width: 1rem; height: 1rem; }
+  .archipelago-marker-name { font-size: .67rem; }
+  .archipelago-marker-identity { font-size: .58rem; }
+  .archipelago-marker-creative { left: 2%; bottom: 23%; }
+  .archipelago-marker-muse { right: 2%; bottom: 13%; }
+  .archipelago-marker-harbor { top: 28%; }
+  .archipelago-marker-tip { display: none; }
+  .archipelago-map-compass { top: 2%; right: 2%; width: 2.3rem; }
+  .archipelago-map-caption { right: .8rem; bottom: .65rem; left: .8rem; font-size: .67rem; line-height: 1.3; }
+  .archipelago-map-index { grid-template-columns: minmax(0, 1fr); gap: 0; margin-top: .75rem; }
+  .archipelago-map-index a { padding-block: .8rem; }
+  .island-details-heading { padding-bottom: 1rem; }
+  .island-detail-section { padding-block: 1.5rem; }
+  .island-detail-inner { grid-template-columns: minmax(0, 1fr); gap: 1.35rem; }
+  .island-detail-art { grid-column: auto; grid-row: auto; aspect-ratio: 1.45; }
+  .island-detail-activities { padding: 1.25rem 0 0; border-top: 1px solid color-mix(in oklab, var(--primary) 18%, transparent); border-left: 0; }
+  .island-detail-activities ul { grid-template-columns: minmax(0, 1fr); }
+  .island-lead { grid-template-columns: 2rem auto minmax(0, 1fr); }
+  .archipelago-closing-content { grid-template-columns: minmax(0, 1fr); }
+  .archipelago-closing-compass { width: 3.5rem; height: 3.5rem; }
+  .archipelago-closing-content > a { justify-self: start; }
+  .islands-footer .direction-line { display: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .archipelago-reveal { opacity: 1; transform: none; transition: none; }
+  .archipelago-marker, .archipelago-marker-tip, .archipelago-explore-button svg, .island-detail-section, .island-detail-art img { transition: none; }
+  .archipelago-marker:hover, .archipelago-marker:focus-visible, .archipelago-marker.is-selected, .archipelago-marker-harbor:hover, .archipelago-marker-harbor:focus-visible, .archipelago-marker-harbor.is-selected { transform: none; }
+}
+
 /* Community guide — AI program recommendations */
 .community-guide-section {
   background: color-mix(in oklab, var(--accent) 20%, var(--brand-white));
