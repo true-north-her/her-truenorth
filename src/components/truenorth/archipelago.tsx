@@ -1,6 +1,11 @@
+import { useState } from "react";
 import { ArrowDown, ArrowRight, Anchor, BookOpen, CalendarDays, Compass, Flower2, Lightbulb, Map, Newspaper, Pencil, Palette, Sparkles, Users } from "lucide-react";
 
 import archipelagoArtwork from "@/assets/truenorth-archipelago-map.jpg";
+import creativeArtwork from "@/assets/truenorth-island-creative.jpg";
+import museArtwork from "@/assets/truenorth-island-muse.jpg";
+import harborArtwork from "@/assets/truenorth-island-harbor.jpg";
+import arrivalArtwork from "@/assets/truenorth-archipelago-arrival.jpg";
 import seasideRose from "@/assets/truenorth-seaside-rose.jpg.asset.json";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
@@ -19,6 +24,7 @@ type Island = {
   markerIcon: IslandIcon;
   mapPosition: string;
   artPosition: string;
+  art: string;
   theme: "creative" | "muse" | "harbor";
 };
 
@@ -40,6 +46,7 @@ export const archipelagoIslands: Island[] = [
     markerIcon: Flower2,
     mapPosition: "creative",
     artPosition: "creative",
+    art: creativeArtwork,
     theme: "creative",
   },
   {
@@ -59,6 +66,7 @@ export const archipelagoIslands: Island[] = [
     markerIcon: BookOpen,
     mapPosition: "muse",
     artPosition: "muse",
+    art: museArtwork,
     theme: "muse",
   },
   {
@@ -78,6 +86,7 @@ export const archipelagoIslands: Island[] = [
     markerIcon: Anchor,
     mapPosition: "harbor",
     artPosition: "harbor",
+    art: harborArtwork,
     theme: "harbor",
   },
 ];
@@ -106,7 +115,7 @@ function IslandMarker({ island, selected, onSelect }: { island: Island; selected
 }
 
 export function ArchipelagoMap() {
-  const [selectedIsland, setSelectedIsland] = React.useState(archipelagoIslands[2].id);
+  const [selectedIsland, setSelectedIsland] = useState(archipelagoIslands[2].id);
 
   return (
     <section id="archipelago-map" className="archipelago-map-section px-5 py-20 md:px-10 md:py-28" aria-labelledby="archipelago-map-title">
@@ -168,7 +177,7 @@ export function IslandDetailSection({ island }: { island: Island }) {
         </div>
 
         <figure className={cn("island-detail-art", `island-art-${island.artPosition}`)}>
-          <img src={archipelagoArtwork} alt={`${island.name}: ${island.identity} island in the TrueNorth illustrated archipelago.`} width={1536} height={1024} loading="lazy" />
+          <img src={island.art} alt={`${island.name}: ${island.identity} island in the TrueNorth illustrated archipelago.`} width={1104} height={720} loading="lazy" />
           <figcaption><Compass aria-hidden="true" /> {island.identity}</figcaption>
         </figure>
       </div>
@@ -195,7 +204,7 @@ export function ArchipelagoHero() {
           </Button>
         </div>
         <figure className="archipelago-hero-image archipelago-reveal" data-archipelago-reveal>
-          <img src={seasideRose.url} alt="A soft seaside rose, a symbol of TrueNorth's coastal community." width={1200} height={1500} fetchPriority="high" />
+          <img src={arrivalArtwork} alt="A pastel sunset over a calm beach, with three islands on the horizon and a rose beside the shore." width={1600} height={960} fetchPriority="high" />
           <figcaption className="font-script">A softer way to find your way.</figcaption>
         </figure>
         <span className="archipelago-hero-stamp" aria-hidden="true"><Compass strokeWidth={0.8} /><span>Three islands<br />Shared horizons</span></span>
@@ -207,7 +216,7 @@ export function ArchipelagoHero() {
 export function ArchipelagoClosing() {
   return (
     <section className="archipelago-closing px-5 py-20 md:px-10 md:py-24" aria-labelledby="archipelago-closing-title">
-      <img className="archipelago-closing-art" src={seasideRose.url} alt="" aria-hidden="true" width={1200} height={1500} loading="lazy" />
+      <img className="archipelago-closing-art" src={arrivalArtwork} alt="" aria-hidden="true" width={1600} height={960} loading="lazy" />
       <div className="archipelago-closing-content mx-auto grid max-w-7xl gap-8 md:grid-cols-[auto_minmax(0,1fr)_auto] md:items-center">
         <Compass className="archipelago-closing-compass" aria-hidden="true" strokeWidth={0.8} />
         <div>
