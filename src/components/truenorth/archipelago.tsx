@@ -1,16 +1,15 @@
 import { useState } from "react";
-import { ArrowDown, ArrowRight, Anchor, BookOpen, CalendarDays, Compass, Flower2, Lightbulb, Map, Newspaper, Pencil, Palette, Sparkles, Users } from "lucide-react";
+import { ArrowDown, ArrowRight, Anchor, BookOpen, CalendarDays, Compass, Flower2, Lightbulb, Map, Newspaper, Pencil, Palette, Sparkles, Users, type LucideIcon } from "lucide-react";
 
 import archipelagoArtwork from "@/assets/truenorth-archipelago-map.jpg";
 import creativeArtwork from "@/assets/truenorth-island-creative.jpg";
 import museArtwork from "@/assets/truenorth-island-muse.jpg";
 import harborArtwork from "@/assets/truenorth-island-harbor.jpg";
 import arrivalArtwork from "@/assets/truenorth-archipelago-arrival.jpg";
-import seasideRose from "@/assets/truenorth-seaside-rose.jpg.asset.json";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
-type IslandIcon = typeof Flower2;
+type IslandIcon = LucideIcon;
 
 type Island = {
   id: string;
@@ -115,7 +114,7 @@ function IslandMarker({ island, selected, onSelect }: { island: Island; selected
 }
 
 export function ArchipelagoMap() {
-  const [selectedIsland, setSelectedIsland] = useState(archipelagoIslands[2].id);
+  const [selectedIsland, setSelectedIsland] = useState("north-star");
 
   return (
     <section id="archipelago-map" className="archipelago-map-section px-5 py-20 md:px-10 md:py-28" aria-labelledby="archipelago-map-title">

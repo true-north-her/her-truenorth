@@ -243,8 +243,8 @@
 .navbar-watermark { position: absolute; width: 260px; height: 260px; top: -125px; right: 12%; color: var(--primary); opacity: .035; pointer-events: none; }
 .navbar-desktop { display: flex; align-items: center; gap: 8px; min-width: 0; }
 .navbar-pill { min-height: 40px; height: 40px; padding-inline: 15px; border-radius: 14px; color: var(--muted-foreground); font-size: 14px; font-weight: 500; letter-spacing: 0; background: transparent; box-shadow: none; transition: background 250ms ease, color 250ms ease; }
-.navbar-pill:hover, .navbar-pill[aria-current="location"] { color: var(--primary); background: var(--secondary); text-decoration: none; }
-.navbar-pill[aria-current="location"] { box-shadow: inset 0 0 0 1px var(--navbar-border); }
+.navbar-pill:hover, .navbar-pill[aria-current="location"], .navbar-pill[aria-current="page"] { color: var(--primary); background: var(--secondary); text-decoration: none; }
+.navbar-pill[aria-current="location"], .navbar-pill[aria-current="page"] { box-shadow: inset 0 0 0 1px var(--navbar-border); }
 .navbar-desktop-cta { justify-self: end; }
 .navbar-cta { border-radius: 14px; color: var(--brand-white); height: 44px; padding-inline: 22px; font-size: 14px; }
 .navbar-cta svg { transition: transform 250ms ease; }
@@ -862,7 +862,7 @@
   .archipelago-hero-stamp span { font-size: .5rem; }
   .archipelago-map-heading { grid-template-columns: minmax(0, 1fr); gap: 0; }
   .archipelago-map-heading .archipelago-eyebrow { grid-column: auto; }
-  .archipelago-map-frame { aspect-ratio: 1 / 1.12; border-radius: .85rem; }
+  .archipelago-map-frame { aspect-ratio: 3 / 2; border-radius: .85rem; }
   .archipelago-map-art { object-position: center; }
   .archipelago-marker { grid-template-columns: 1.8rem minmax(0, 1fr); gap: .4rem; min-width: 0; max-width: 48%; padding: .4rem .55rem .4rem .4rem; }
   .archipelago-marker-icon { width: 1.8rem; height: 1.8rem; }
