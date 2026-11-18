@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { Compass, Menu, X } from "lucide-react";
+import { ArrowUpRight, Compass, Menu, X } from "lucide-react";
 import { Link, useRouterState } from "@tanstack/react-router";
 import { Button } from "@/components/ui/button";
 import { BrandMark } from "@/components/truenorth/brand";
@@ -10,7 +10,6 @@ const navigation = [
   { id: "how", label: "About us" },
   { id: "islands", label: "Islands" },
   { id: "team", label: "Team" },
-  { id: "newsletter", label: "Join TrueNorth" },
 ] as const;
 
 const wavePath = Array.from({ length: 24 }, (_, i) => `${i === 0 ? "M0 2.5" : ""} Q${i * 60 + 15} 0 ${i * 60 + 30} 2.5 T${i * 60 + 60} 2.5`).join(" ");
@@ -89,20 +88,22 @@ export function TrueNorthNavbar() {
     };
   }, [open]);
 
-  const links = navigation.map(({ id, label }) => <Button key={id} asChild variant="ghost" className={`navbar-pill${id === "newsletter" ? " navbar-join-pill" : ""}`}>{id === "islands" ? <Link to="/islands" aria-current={pathname === "/islands" ? "page" : undefined} onClick={() => setOpen(false)}>{label}</Link> : <a href={pathname === "/" ? `#${id}` : `/#${id}`} data-chapter={id} onClick={() => setOpen(false)}>{label}</a>}</Button>);
+  const join = <Button asChild className="navbar-cta"><a href={pathname === "/" ? "#newsletter" : "/#newsletter"} data-chapter="newsletter" onClick={() => setOpen(false)}>Join TrueNorth <ArrowUpRight className="size-4" aria-hidden="true" /></a></Button>;
+  const links = navigation.map(({ id, label }) => <Button key={id} asChild variant="ghost" className="navbar-pill">{id === "islands" ? <Link to="/islands" aria-current={pathname === "/islands" ? "page" : undefined} onClick={() => setOpen(false)}>{label}</Link> : <a href={pathname === "/" ? `#${id}` : `/#${id}`} data-chapter={id} onClick={() => setOpen(false)}>{label}</a>}</Button>);
 
   return (
     <header ref={headerRef} className="truenorth-navbar">
       <div className="navbar-surface">
         <Compass className="navbar-watermark" strokeWidth={.6} aria-hidden="true" />
         <div className="navbar-inner">
-          <a href="#top" className="navbar-logo" aria-label="TrueNorth home" onClick={() => setOpen(false)}><BrandMark variant="symbol" imageClassName="navbar-logo-image" /></a>
+          <a href={pathname === "/" ? "#top" : "/#top"} className="navbar-logo" aria-label="TrueNorth home" onClick={() => setOpen(false)}><BrandMark variant="symbol" imageClassName="navbar-logo-image" /></a>
           <nav className="navbar-desktop" aria-label="Main navigation">{links}</nav>
+          <div className="navbar-desktop-cta">{join}</div>
           <Button ref={toggleRef} variant="ghost" size="icon" className="navbar-menu-toggle" aria-label={open ? "Close navigation" : "Open navigation"} aria-expanded={open} aria-controls="mobile-navigation" onClick={() => setOpen(!open)}>{open ? <X aria-hidden="true" /> : <Menu aria-hidden="true" />}</Button>
         </div>
       </div>
       <CoastalProgress fillRef={fillRef} />
-      <nav id="mobile-navigation" className="navbar-mobile" aria-label="Mobile navigation" hidden={!open}>{links}</nav>
+      <nav id="mobile-navigation" className="navbar-mobile" aria-label="Mobile navigation" hidden={!open}>{links}{join}</nav>
     </header>
   );
 }
